@@ -1,0 +1,154 @@
+postgres=# \l
+                                         List of databases
+   Name    |  Owner   | Encoding |      Collate       |       Ctype        |   Access privileges
+-----------+----------+----------+--------------------+--------------------+-----------------------
+ postgres  | postgres | UTF8     | English_India.1252 | English_India.1252 | =Tc/postgres         +
+           |          |          |                    |                    | postgres=CTc/postgres
+ template0 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+ test      | postgres | UTF8     | English_India.1252 | English_India.1252 |
+(4 rows)
+
+
+postgres=# \c
+You are now connected to database "postgres" as user "postgres".
+postgres=# \c test
+You are now connected to database "test" as user "postgres".
+test=# CREATE TABLE person( id INT ,
+test(# fname VARCHAR(30),
+test(# lname VARCHAR(30),
+test(# gender VARCHAR(7),
+test(# date_of_birth DATE );
+CREATE TABLE
+test=# \d
+         List of relations
+ Schema |  Name  | Type  |  Owner
+--------+--------+-------+----------
+ public | person | table | postgres
+(1 row)
+
+
+test=# \d person
+                         Table "public.person"
+    Column     |         Type          | Collation | Nullable | Default
+---------------+-----------------------+-----------+----------+---------
+ id            | integer               |           |          |
+ fname         | character varying(30) |           |          |
+ lname         | character varying(30) |           |          |
+ gender        | character varying(7)  |           |          |
+ date_of_birth | date                  |           |          |
+
+
+test=# DROP TABLE person;
+DROP TABLE
+test=# \d person;
+Did not find any relation named "person".
+test=# \d;
+invalid command \d;
+Try \? for help.
+test=# \d
+Did not find any relations.
+test=# CREATE TABLE person( id BIGSERIAL NOT NULL PRIMARY KEY,
+test(# fname VARCHAR(30),
+test(# );
+ERROR:  syntax error at or near ")"
+LINE 3: );
+        ^
+test=# CREATE TABLE person( id BIGSERIAL NOT NULL PRIMARY KEY,
+test(# fname VARCHAR(30) NOT NULL,
+test(# lname VARCHAR(30) NOT NULL,
+test(# gender VARCHAR(7) NOT NULL,
+test(# date_of_birth DATE NOT NULL,
+test(# email VARCHAR(50) );
+CREATE TABLE
+test=# \d
+              List of relations
+ Schema |     Name      |   Type   |  Owner
+--------+---------------+----------+----------
+ public | person        | table    | postgres
+ public | person_id_seq | sequence | postgres
+(2 rows)
+
+
+test=# \d person
+                                       Table "public.person"
+    Column     |         Type          | Collation | Nullable |              Default
+---------------+-----------------------+-----------+----------+------------------------------------
+ id            | bigint                |           | not null | nextval('person_id_seq'::regclass)
+ fname         | character varying(30) |           | not null |
+ lname         | character varying(30) |           | not null |
+ gender        | character varying(7)  |           | not null |
+ date_of_birth | date                  |           | not null |
+ email         | character varying(50) |           |          |
+Indexes:
+    "person_pkey" PRIMARY KEY, btree (id)
+
+
+test=# INSERT INTO person(fname, lname, gender,date_of_birth) VALUES('Ram','Kumar','Male','1997/10/08');
+INSERT 0 1
+test=# INSERT INTO person(fname, lname, gender,date_of_birth,email) VALUES('Ramya','Rajesh','Male','1997/10/08','ramya123@xyz.com' );
+INSERT 0 1
+test=# SELECT * FROM person;
+ id | fname | lname  | gender | date_of_birth |      email
+----+-------+--------+--------+---------------+------------------
+  1 | Ram   | Kumar  | Male   | 1997-10-08    |
+  2 | Ramya | Rajesh | Male   | 1997-10-08    | ramya123@xyz.com
+(2 rows)
+
+
+test=# UPDATE person SET gender = 'Female' WHERE id = 2;
+UPDATE 1
+test=# SELECT * FROM person;
+ id | fname | lname  | gender | date_of_birth |      email
+----+-------+--------+--------+---------------+------------------
+  1 | Ram   | Kumar  | Male   | 1997-10-08    |
+  2 | Ramya | Rajesh | Female | 1997-10-08    | ramya123@xyz.com
+(2 rows)
+
+
+test=# UPDATE person SET date_of_birth = '1998/11/21'WHERE id = 2;
+UPDATE 1
+test=# SELECT * FROM person;
+ id | fname | lname  | gender | date_of_birth |      email
+----+-------+--------+--------+---------------+------------------
+  1 | Ram   | Kumar  | Male   | 1997-10-08    |
+  2 | Ramya | Rajesh | Female | 1998-11-21    | ramya123@xyz.com
+(2 rows)
+
+
+test=# SELECT FROM person;
+--
+(2 rows)
+
+
+test=# SELECT fname FROM person;
+ fname
+-------
+ Ram
+ Ramya
+(2 rows)
+
+
+test=# SELECT fname , lname FROM person;
+ fname | lname
+-------+--------
+ Ram   | Kumar
+ Ramya | Rajesh
+(2 rows)
+
+
+test=# SELECT email FROM person;
+      email
+------------------
+
+ ramya123@xyz.com
+(2 rows)
+
+
+test=# SELECT * FROM person ;
+ id | fname | lname  | gender | date_of_birth |      email
+----+-------+--------+--------+---------------+------------------
+  1 | Ram   | Kumar  | Male   | 1997-10-08    |
+  2 | Ramya | Rajesh | Female | 1998-11-21    | ramya123@xyz.com
