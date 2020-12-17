@@ -1,0 +1,1558 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+psql (13.0)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \l
+                                         List of databases
+   Name    |  Owner   | Encoding |      Collate       |       Ctype        |   Access privileges
+-----------+----------+----------+--------------------+--------------------+-----------------------
+ postgres  | postgres | UTF8     | English_India.1252 | English_India.1252 | =Tc/postgres         +
+           |          |          |                    |                    | postgres=CTc/postgres
+ template0 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+(3 rows)
+
+
+postgres=# SET search_path TO person;
+SET
+postgres=# SELECT * FROM persons;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+------------------------
+   1 | Danice     | Eastbury     | deastbury0@instagram.com        | Female | 2017-08-13    | Brazil
+   2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp            | Male   | 2019-08-10    | South Africa
+   3 | Lita       | Wareing      | lwareing2@deliciousdays.com     | Female | 2017-04-30    | Indonesia
+   4 | Myrvyn     | Upton        |                                 | Male   | 2020-01-01    | Kazakhstan
+   5 | Rina       | Muirhead     |                                 | Female | 2018-09-21    | Nigeria
+   6 | Krysta     | Bello        | kbello5@elpais.com              | Female | 2016-12-25    | China
+   7 | Jada       | Merricks     |                                 | Female | 2017-04-07    | Brazil
+   8 | Heida      | Newling      | hnewling7@cafepress.com         | Female | 2019-07-18    | Mexico
+   9 | Ruthi      | Goulder      | rgoulder8@wired.com             | Female | 2016-05-18    | Croatia
+  10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org       | Male   | 2020-07-08    | United States
+  11 | Shauna     | Burkert      | sburkerta@123-reg.co.uk         | Female | 2018-09-13    | Brazil
+  12 | Dud        | Coker        | dcokerb@oakley.com              | Male   | 2020-07-01    | Bosnia and Herzegovina
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com      | Male   | 2020-12-12    | Canada
+  14 | Fanya      | Dallyn       | fdallynd@mozilla.com            | Female | 2017-08-12    | Mali
+  15 | Colline    | Hindenburg   | chindenburge@posterous.com      | Female | 2017-06-27    | Thailand
+  16 | Nola       | Stit         | nstitf@cornell.edu              | Female | 2018-07-17    | Indonesia
+  17 | Sabina     | Mangenot     | smangenotg@accuweather.com      | Female | 2020-07-18    | Denmark
+  18 | Ed         | Grigorushkin |                                 | Male   | 2020-05-02    | Philippines
+  19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk            | Male   | 2019-10-21    | China
+  20 | Webb       | Angrick      |                                 | Male   | 2019-11-29    | China
+  21 | Hildagarde | Furlow       | hfurlowk@craigslist.org         | Female | 2020-10-28    | China
+  22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com         | Male   | 2020-05-23    | Indonesia
+  23 | Charlie    | Tapping      | ctappingm@wikispaces.com        | Male   | 2017-09-16    | Indonesia
+  24 | Eddie      | Lineker      | elinekern@odnoklassniki.ru      | Female | 2018-05-16    | Czech Republic
+  25 | Hynda      | Offell       | hoffello@bbb.org                | Female | 2017-07-20    | Norway
+  26 | Kendall    | Branno       | kbrannop@cyberchimps.com        | Male   | 2017-04-10    | Finland
+  27 | Sigvard    | Prue         | sprueq@marriott.com             | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke       | tdincker@fotki.com              | Female | 2018-04-14    | Russia
+  29 | Valma      | Lammerich    |                                 | Female | 2018-10-25    | Finland
+  30 | Bondie     | Duesbury     | bduesburyt@seattletimes.com     | Male   | 2017-04-06    | China
+  31 | Lorrie     | Percy        |                                 | Female | 2019-11-30    | Indonesia
+  32 | Hillel     | Melledy      |                                 | Male   | 2019-11-19    | China
+  33 | Ivonne     | Boal         | iboalw@ucoz.com                 | Female | 2018-01-14    | Japan
+  34 | Amery      | Borge        | aborgex@jugem.jp                | Male   | 2019-06-05    | Georgia
+  35 | Ody        | Swaton       | oswatony@lulu.com               | Male   | 2018-01-07    | Germany
+  36 | Cathe      | Horbart      | chorbartz@telegraph.co.uk       | Female | 2018-03-12    | Nicaragua
+  37 | Lucas      | Trenholm     | ltrenholm10@sakura.ne.jp        | Male   | 2016-01-07    | Brazil
+  38 | Emmalynn   | Grouvel      |                                 | Female | 2016-04-03    | China
+  39 | Tomas      | Sinclar      | tsinclar12@yahoo.com            | Male   | 2016-02-12    | Colombia
+  40 | Alexandros | Sausman      | asausman13@dyndns.org           | Male   | 2017-11-24    | Czech Republic
+  41 | Caroljean  | Govett       | cgovett14@so-net.ne.jp          | Female | 2018-08-23    | Venezuela
+  42 | Bellina    | Cullivan     |                                 | Female | 2020-01-11    | China
+  43 | Gannon     | Pace         |                                 | Male   | 2018-12-23    | Indonesia
+  44 | Fair       | Gladbeck     | fgladbeck17@huffingtonpost.com  | Male   | 2017-11-18    | Ukraine
+  45 | Una        | Crippell     | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+  46 | Gustav     | Duggary      |                                 | Male   | 2019-07-17    | Indonesia
+  47 | Viviana    | Kerwood      |                                 | Female | 2019-12-16    | Portugal
+  48 | Hillie     | Kryska       | hkryska1b@loc.gov               | Male   | 2016-12-14    | Portugal
+  49 | Kathlin    | Lyokhin      | klyokhin1c@wikispaces.com       | Female | 2020-10-31    | Argentina
+  50 | Eleanore   | Benns        | ebenns1d@yellowbook.com         | Female | 2016-12-14    | Indonesia
+  51 | Vilma      | Bough        | vbough1e@army.mil               | Female | 2017-11-17    | Philippines
+  52 | Annadiane  | Wenham       | awenham1f@free.fr               | Female | 2018-06-20    | Tunisia
+  53 | Oliy       | Powis        | opowis1g@ox.ac.uk               | Female | 2020-05-23    | China
+  54 | Andrey     | Pretti       |                                 | Male   | 2018-02-11    | Argentina
+  55 | Cecilia    | Mably        | cmably1i@squidoo.com            | Female | 2019-06-10    | China
+  56 | Boyce      | Gillicuddy   | bgillicuddy1j@patch.com         | Male   | 2016-10-17    | Portugal
+  57 | Kerr       | Skegg        | kskegg1k@tamu.edu               | Male   | 2020-06-07    | China
+  58 | Marsiella  | Kornes       |                                 | Female | 2016-08-03    | Czech Republic
+  59 | Fidelio    | Melling      | fmelling1m@webnode.com          | Male   | 2017-01-12    | China
+  60 | Karyl      | Bulfoy       | kbulfoy1n@t-online.de           | Female | 2020-10-08    | Peru
+  61 | Ottilie    | MacSkeaghan  | omacskeaghan1o@arstechnica.com  | Female | 2019-04-13    | China
+  62 | Glenden    | MacGhee      |                                 | Male   | 2017-07-12    | Japan
+  63 | Gracie     | Hain         | ghain1q@phoca.cz                | Female | 2015-12-14    | Indonesia
+  64 | Noby       | Lagne        | nlagne1r@eventbrite.com         | Male   | 2017-08-31    | Mexico
+  65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com        | Male   | 2020-10-27    | Indonesia
+  66 | Mick       | Titherington | mtitherington1t@xing.com        | Male   | 2018-09-30    | China
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com           | Male   | 2019-05-27    | Canada
+  68 | Natividad  | Le Jean      |                                 | Female | 2020-03-02    | Poland
+  69 | Sven       | Martignon    | smartignon1w@pen.io             | Male   | 2016-08-13    | Portugal
+  70 | Victoria   | Jakuszewski  | vjakuszewski1x@sakura.ne.jp     | Female | 2017-08-14    | Peru
+  71 | Ericha     | Igglesden    |                                 | Female | 2018-05-19    | Poland
+  72 | Lorianne   | McQuade      | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+  73 | Corissa    | Grube        |                                 | Female | 2020-07-31    | Sweden
+  74 | Meagan     | Dungate      | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+  75 | Amalle     | Macellar     | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+  76 | Sheelagh   | Hartfield    |                                 | Female | 2018-08-06    | Azerbaijan
+  77 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com   | Male   | 2017-02-24    | Norway
+  78 | Desdemona  | Filipczynski |                                 | Female | 2016-05-31    | China
+  79 | Stavros    | Tuddall      |                                 | Male   | 2016-02-01    | Portugal
+  80 | Raf        | Olczyk       |                                 | Female | 2016-01-17    | France
+  81 | Kimberli   | Orcott       |                                 | Female | 2016-12-31    | China
+  82 | Twila      | Gregersen    |                                 | Female | 2018-06-04    | Sweden
+  83 | Mandie     | Creavan      |                                 | Female | 2017-10-22    | Syria
+  84 | Herbie     | Tootell      |                                 | Male   | 2020-08-06    | Poland
+  85 | Dyana      | Ventura      | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com           | Male   | 2017-12-04    | China
+  87 | Jakob      | Pruvost      | jpruvost2e@spiegel.de           | Male   | 2017-09-11    | Russia
+  88 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+  89 | Midge      | McMorland    | mmcmorland2g@trellian.com       | Female | 2017-06-13    | China
+  90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+  91 | Torre      | Snell        |                                 | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi      |                                 | Male   | 2016-04-12    | Philippines
+  93 | Fayette    | Lapley       |                                 | Female | 2017-04-29    | Sweden
+  94 | Bert       | Cutler       |                                 | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens      | fjiggens2m@adobe.com            | Male   | 2017-12-08    | Indonesia
+  96 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+  97 | Zelma      | Doyle        |                                 | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek         | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com       | Male   | 2017-08-31    | Russia
+(100 rows)
+
+
+postgres=# \d person;
+Did not find any relation named "person".
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+
+
+--------------#######################################--------------SELECT , DISTINCT, ORDER BY ---------####################################--------------------------
+
+postgres=# SELECT first_name , email FROM persons;
+ first_name |              email
+------------+---------------------------------
+ Danice     | deastbury0@instagram.com
+ Gerhardt   | gmcgurk1@plala.or.jp
+ Lita       | lwareing2@deliciousdays.com
+ Myrvyn     |
+ Rina       |
+ Krysta     | kbello5@elpais.com
+ Jada       |
+ Heida      | hnewling7@cafepress.com
+ Ruthi      | rgoulder8@wired.com
+ Isiahi     | icoughlan9@craigslist.org
+ Shauna     | sburkerta@123-reg.co.uk
+ Dud        | dcokerb@oakley.com
+ Blayne     | bwillersonc@techcrunch.com
+ Fanya      | fdallynd@mozilla.com
+ Colline    | chindenburge@posterous.com
+ Nola       | nstitf@cornell.edu
+ Sabina     | smangenotg@accuweather.com
+ Ed         |
+ Dallis     | dperkinsi@ebay.co.uk
+ Webb       |
+ Hildagarde | hfurlowk@craigslist.org
+ Garrett    | gmacmoyerl@netscape.com
+ Charlie    | ctappingm@wikispaces.com
+ Eddie      | elinekern@odnoklassniki.ru
+ Hynda      | hoffello@bbb.org
+ Kendall    | kbrannop@cyberchimps.com
+ Sigvard    | sprueq@marriott.com
+ Tina       | tdincker@fotki.com
+ Valma      |
+ Bondie     | bduesburyt@seattletimes.com
+ Lorrie     |
+ Hillel     |
+ Ivonne     | iboalw@ucoz.com
+ Amery      | aborgex@jugem.jp
+ Ody        | oswatony@lulu.com
+ Cathe      | chorbartz@telegraph.co.uk
+ Lucas      | ltrenholm10@sakura.ne.jp
+ Emmalynn   |
+^Cpostgres=#
+postgres=#
+postgres=#
+        
+postgres=# SELECT first_name , email, last_name FROM persons;
+ first_name |              email              |  last_name
+------------+---------------------------------+--------------
+ Danice     | deastbury0@instagram.com        | Eastbury
+ Gerhardt   | gmcgurk1@plala.or.jp            | McGurk
+ Lita       | lwareing2@deliciousdays.com     | Wareing
+ Myrvyn     |                                 | Upton
+ Rina       |                                 | Muirhead
+ Krysta     | kbello5@elpais.com              | Bello
+ Jada       |                                 | Merricks
+ Heida      | hnewling7@cafepress.com         | Newling
+ Ruthi      | rgoulder8@wired.com             | Goulder
+ Isiahi     | icoughlan9@craigslist.org       | Coughlan
+ Shauna     | sburkerta@123-reg.co.uk         | Burkert
+ Dud        | dcokerb@oakley.com              | Coker
+ Blayne     | bwillersonc@techcrunch.com      | Willerson
+ Fanya      | fdallynd@mozilla.com            | Dallyn
+ Colline    | chindenburge@posterous.com      | Hindenburg
+ Nola       | nstitf@cornell.edu              | Stit
+ Sabina     | smangenotg@accuweather.com      | Mangenot
+ Ed         |                                 | Grigorushkin
+ Dallis     | dperkinsi@ebay.co.uk            | Perkins
+ Webb       |                                 | Angrick
+ Hildagarde | hfurlowk@craigslist.org         | Furlow
+ Garrett    | gmacmoyerl@netscape.com         | MacMoyer
+ Charlie    | ctappingm@wikispaces.com        | Tapping
+ Eddie      | elinekern@odnoklassniki.ru      | Lineker
+ Hynda      | hoffello@bbb.org                | Offell
+ Kendall    | kbrannop@cyberchimps.com        | Branno
+ Sigvard    | sprueq@marriott.com             | Prue
+ Tina       | tdincker@fotki.com              | Dincke
+ Valma      |                                 | Lammerich
+ Bondie     | bduesburyt@seattletimes.com     | Duesbury
+ Lorrie     |                                 | Percy
+ Hillel     |                                 | Melledy
+ Ivonne     | iboalw@ucoz.com                 | Boal
+ Amery      | aborgex@jugem.jp                | Borge
+ Ody        | oswatony@lulu.com               | Swaton
+ Cathe      | chorbartz@telegraph.co.uk       | Horbart
+ Lucas      | ltrenholm10@sakura.ne.jp        | Trenholm
+ Emmalynn   |                                 | Grouvel
+^Cpostgres=#
+postgres=#
+postgres=#
+                      ^
+postgres=# SELECT * FROM persons ORDER BY country_of_birth ;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+------------------------
+  94 | Bert       | Cutler       |                                 | Male   | 2020-06-01    | Argentina
+  49 | Kathlin    | Lyokhin      | klyokhin1c@wikispaces.com       | Female | 2020-10-31    | Argentina
+  54 | Andrey     | Pretti       |                                 | Male   | 2018-02-11    | Argentina
+  76 | Sheelagh   | Hartfield    |                                 | Female | 2018-08-06    | Azerbaijan
+  12 | Dud        | Coker        | dcokerb@oakley.com              | Male   | 2020-07-01    | Bosnia and Herzegovina
+   7 | Jada       | Merricks     |                                 | Female | 2017-04-07    | Brazil
+  37 | Lucas      | Trenholm     | ltrenholm10@sakura.ne.jp        | Male   | 2016-01-07    | Brazil
+   1 | Danice     | Eastbury     | deastbury0@instagram.com        | Female | 2017-08-13    | Brazil
+  11 | Shauna     | Burkert      | sburkerta@123-reg.co.uk         | Female | 2018-09-13    | Brazil
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com      | Male   | 2020-12-12    | Canada
+  85 | Dyana      | Ventura      | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com           | Male   | 2019-05-27    | Canada
+  88 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+   6 | Krysta     | Bello        | kbello5@elpais.com              | Female | 2016-12-25    | China
+  19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk            | Male   | 2019-10-21    | China
+  20 | Webb       | Angrick      |                                 | Male   | 2019-11-29    | China
+  21 | Hildagarde | Furlow       | hfurlowk@craigslist.org         | Female | 2020-10-28    | China
+  30 | Bondie     | Duesbury     | bduesburyt@seattletimes.com     | Male   | 2017-04-06    | China
+  32 | Hillel     | Melledy      |                                 | Male   | 2019-11-19    | China
+  38 | Emmalynn   | Grouvel      |                                 | Female | 2016-04-03    | China
+  42 | Bellina    | Cullivan     |                                 | Female | 2020-01-11    | China
+  53 | Oliy       | Powis        | opowis1g@ox.ac.uk               | Female | 2020-05-23    | China
+  55 | Cecilia    | Mably        | cmably1i@squidoo.com            | Female | 2019-06-10    | China
+  57 | Kerr       | Skegg        | kskegg1k@tamu.edu               | Male   | 2020-06-07    | China
+  59 | Fidelio    | Melling      | fmelling1m@webnode.com          | Male   | 2017-01-12    | China
+  61 | Ottilie    | MacSkeaghan  | omacskeaghan1o@arstechnica.com  | Female | 2019-04-13    | China
+  66 | Mick       | Titherington | mtitherington1t@xing.com        | Male   | 2018-09-30    | China
+  78 | Desdemona  | Filipczynski |                                 | Female | 2016-05-31    | China
+  81 | Kimberli   | Orcott       |                                 | Female | 2016-12-31    | China
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com           | Male   | 2017-12-04    | China
+  89 | Midge      | McMorland    | mmcmorland2g@trellian.com       | Female | 2017-06-13    | China
+  96 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+  99 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+  39 | Tomas      | Sinclar      | tsinclar12@yahoo.com            | Male   | 2016-02-12    | Colombia
+  45 | Una        | Crippell     | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+   9 | Ruthi      | Goulder      | rgoulder8@wired.com             | Female | 2016-05-18    | Croatia
+  58 | Marsiella  | Kornes       |                                 | Female | 2016-08-03    | Czech Republic
+  40 | Alexandros | Sausman      | asausman13@dyndns.org           | Male   | 2017-11-24    | Czech Republic
+^Cpostgres=#
+postgres=#
+postgres=# SELECT first_name , country_of_birth FROM persons ORDER BY country_of_birth DESC;
+ first_name |    country_of_birth
+------------+------------------------
+ Caroljean  | Venezuela
+ Isiahi     | United States
+ Fair       | Ukraine
+ Annadiane  | Tunisia
+ Colline    | Thailand
+ Mandie     | Syria
+ Fayette    | Sweden
+ Twila      | Sweden
+ Amalle     | Sweden
+ Corissa    | Sweden
+ Gerhardt   | South Africa
+ Alfonse    | Russia
+ Meagan     | Russia
+ Jakob      | Russia
+ Albertina  | Russia
+ Sigvard    | Russia
+ Tina       | Russia
+ Viviana    | Portugal
+ Hillie     | Portugal
+ Torre      | Portugal
+ Stavros    | Portugal
+ Boyce      | Portugal
+ Sven       | Portugal
+ Herbie     | Poland
+ Ericha     | Poland
+ Natividad  | Poland
+ Vilma      | Philippines
+ Ed         | Philippines
+ Zelma      | Philippines
+ Lefty      | Philippines
+ Victoria   | Peru
+ Karyl      | Peru
+ Jeannie    | Palestinian Territory
+ Hynda      | Norway
+ Paige      | Norway
+ Rina       | Nigeria
+ Cathe      | Nicaragua
+ Noby       | Mexico
+^Cpostgres=#
+postgres=#
+postgres=# 
+                                               ^
+postgres=# SELECT first_name , date_of_birth FROM persons ORDER BY date_of_birth ASC;
+ first_name | date_of_birth
+------------+---------------
+ Gracie     | 2015-12-14
+ Lucas      | 2016-01-07
+ Raf        | 2016-01-17
+ Stavros    | 2016-02-01
+ Tomas      | 2016-02-12
+ Emmalynn   | 2016-04-03
+ Lefty      | 2016-04-12
+ Ruthi      | 2016-05-18
+ Desdemona  | 2016-05-31
+ Marsiella  | 2016-08-03
+ Sven       | 2016-08-13
+ Zelma      | 2016-08-14
+ Amalle     | 2016-09-26
+ Boyce      | 2016-10-17
+ Hillie     | 2016-12-14
+ Eleanore   | 2016-12-14
+ Krysta     | 2016-12-25
+ Kimberli   | 2016-12-31
+ Fidelio    | 2017-01-12
+ Meagan     | 2017-02-11
+ Paige      | 2017-02-24
+ Dyana      | 2017-03-12
+ Bondie     | 2017-04-06
+ Jada       | 2017-04-07
+ Kendall    | 2017-04-10
+ Fayette    | 2017-04-29
+ Lita       | 2017-04-30
+ Midge      | 2017-06-13
+ Colline    | 2017-06-27
+ Glenden    | 2017-07-12
+ Hynda      | 2017-07-20
+ Fanya      | 2017-08-12
+ Danice     | 2017-08-13
+ Victoria   | 2017-08-14
+ Noby       | 2017-08-31
+ Alfonse    | 2017-08-31
+ Jakob      | 2017-09-11
+ Charlie    | 2017-09-16
+^Cpostgres=#
+postgres=#
+postgres=# SELECT * FROM persons ORDER BY date_of_birth DESC;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+------------------------
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com      | Male   | 2020-12-12    | Canada
+  49 | Kathlin    | Lyokhin      | klyokhin1c@wikispaces.com       | Female | 2020-10-31    | Argentina
+  21 | Hildagarde | Furlow       | hfurlowk@craigslist.org         | Female | 2020-10-28    | China
+  65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com        | Male   | 2020-10-27    | Indonesia
+  60 | Karyl      | Bulfoy       | kbulfoy1n@t-online.de           | Female | 2020-10-08    | Peru
+  84 | Herbie     | Tootell      |                                 | Male   | 2020-08-06    | Poland
+  73 | Corissa    | Grube        |                                 | Female | 2020-07-31    | Sweden
+  17 | Sabina     | Mangenot     | smangenotg@accuweather.com      | Female | 2020-07-18    | Denmark
+  10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org       | Male   | 2020-07-08    | United States
+  12 | Dud        | Coker        | dcokerb@oakley.com              | Male   | 2020-07-01    | Bosnia and Herzegovina
+  57 | Kerr       | Skegg        | kskegg1k@tamu.edu               | Male   | 2020-06-07    | China
+  90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+  94 | Bert       | Cutler       |                                 | Male   | 2020-06-01    | Argentina
+  53 | Oliy       | Powis        | opowis1g@ox.ac.uk               | Female | 2020-05-23    | China
+  22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com         | Male   | 2020-05-23    | Indonesia
+  18 | Ed         | Grigorushkin |                                 | Male   | 2020-05-02    | Philippines
+  68 | Natividad  | Le Jean      |                                 | Female | 2020-03-02    | Poland
+  42 | Bellina    | Cullivan     |                                 | Female | 2020-01-11    | China
+   4 | Myrvyn     | Upton        |                                 | Male   | 2020-01-01    | Kazakhstan
+  47 | Viviana    | Kerwood      |                                 | Female | 2019-12-16    | Portugal
+  31 | Lorrie     | Percy        |                                 | Female | 2019-11-30    | Indonesia
+  20 | Webb       | Angrick      |                                 | Male   | 2019-11-29    | China
+  32 | Hillel     | Melledy      |                                 | Male   | 2019-11-19    | China
+  19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk            | Male   | 2019-10-21    | China
+  72 | Lorianne   | McQuade      | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+  91 | Torre      | Snell        |                                 | Male   | 2019-08-15    | Portugal
+   2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp            | Male   | 2019-08-10    | South Africa
+   8 | Heida      | Newling      | hnewling7@cafepress.com         | Female | 2019-07-18    | Mexico
+  46 | Gustav     | Duggary      |                                 | Male   | 2019-07-17    | Indonesia
+  55 | Cecilia    | Mably        | cmably1i@squidoo.com            | Female | 2019-06-10    | China
+  34 | Amery      | Borge        | aborgex@jugem.jp                | Male   | 2019-06-05    | Georgia
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com           | Male   | 2019-05-27    | Canada
+  61 | Ottilie    | MacSkeaghan  | omacskeaghan1o@arstechnica.com  | Female | 2019-04-13    | China
+  96 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+  88 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+  45 | Una        | Crippell     | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+  99 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+  43 | Gannon     | Pace         |                                 | Male   | 2018-12-23    | Indonesia
+^Cpostgres=#
+postgres=#
+postgres=# SELECT * FROM persons ORDER BY id DESC ;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+------------------------
+ 100 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com       | Male   | 2017-08-31    | Russia
+  99 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+  98 | Albertina  | Teek         | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+  97 | Zelma      | Doyle        |                                 | Female | 2016-08-14    | Philippines
+  96 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+  95 | Farrell    | Jiggens      | fjiggens2m@adobe.com            | Male   | 2017-12-08    | Indonesia
+  94 | Bert       | Cutler       |                                 | Male   | 2020-06-01    | Argentina
+  93 | Fayette    | Lapley       |                                 | Female | 2017-04-29    | Sweden
+  92 | Lefty      | Iorizzi      |                                 | Male   | 2016-04-12    | Philippines
+  91 | Torre      | Snell        |                                 | Male   | 2019-08-15    | Portugal
+  90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+  89 | Midge      | McMorland    | mmcmorland2g@trellian.com       | Female | 2017-06-13    | China
+  88 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+  87 | Jakob      | Pruvost      | jpruvost2e@spiegel.de           | Male   | 2017-09-11    | Russia
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com           | Male   | 2017-12-04    | China
+  85 | Dyana      | Ventura      | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+  84 | Herbie     | Tootell      |                                 | Male   | 2020-08-06    | Poland
+  83 | Mandie     | Creavan      |                                 | Female | 2017-10-22    | Syria
+  82 | Twila      | Gregersen    |                                 | Female | 2018-06-04    | Sweden
+  81 | Kimberli   | Orcott       |                                 | Female | 2016-12-31    | China
+  80 | Raf        | Olczyk       |                                 | Female | 2016-01-17    | France
+  79 | Stavros    | Tuddall      |                                 | Male   | 2016-02-01    | Portugal
+  78 | Desdemona  | Filipczynski |                                 | Female | 2016-05-31    | China
+  77 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com   | Male   | 2017-02-24    | Norway
+  76 | Sheelagh   | Hartfield    |                                 | Female | 2018-08-06    | Azerbaijan
+  75 | Amalle     | Macellar     | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+  74 | Meagan     | Dungate      | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+  73 | Corissa    | Grube        |                                 | Female | 2020-07-31    | Sweden
+  72 | Lorianne   | McQuade      | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+  71 | Ericha     | Igglesden    |                                 | Female | 2018-05-19    | Poland
+  70 | Victoria   | Jakuszewski  | vjakuszewski1x@sakura.ne.jp     | Female | 2017-08-14    | Peru
+  69 | Sven       | Martignon    | smartignon1w@pen.io             | Male   | 2016-08-13    | Portugal
+  68 | Natividad  | Le Jean      |                                 | Female | 2020-03-02    | Poland
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com           | Male   | 2019-05-27    | Canada
+  66 | Mick       | Titherington | mtitherington1t@xing.com        | Male   | 2018-09-30    | China
+  65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com        | Male   | 2020-10-27    | Indonesia
+  64 | Noby       | Lagne        | nlagne1r@eventbrite.com         | Male   | 2017-08-31    | Mexico
+  63 | Gracie     | Hain         | ghain1q@phoca.cz                | Female | 2015-12-14    | Indonesia
+^Cpostgres=#
+postgres=# SELECT first_name , id FROM persons ORDER BY first_name ;
+ first_name | id
+------------+-----
+ Albertina  |  98
+ Alexandros |  40
+ Alfonse    | 100
+ Amalle     |  75
+ Amery      |  34
+ Andrey     |  54
+ Annadiane  |  52
+ Bellina    |  42
+ Bert       |  94
+ Blayne     |  13
+ Bondie     |  30
+ Boyce      |  56
+ Brynna     |  99
+ Callie     |  96
+ Caroljean  |  41
+ Cathe      |  36
+ Cecilia    |  55
+ Charlie    |  23
+ Colline    |  15
+ Corissa    |  73
+ Dallis     |  19
+ Danice     |   1
+ Desdemona  |  78
+ Dud        |  12
+ Dyana      |  85
+ Ed         |  18
+ Eddie      |  24
+ Eleanore   |  50
+ Emmalynn   |  38
+ Ericha     |  71
+ Fair       |  44
+ Fanya      |  14
+ Farlee     |  86
+ Farrell    |  95
+ Fayette    |  93
+ Fidelio    |  59
+ Gannon     |  43
+ Garrett    |  22
+^Cpostgres=#
+postgres=#
+
+postgres=# SELECT first_name, last_name, id FROM persons ORDER BY last_name , id ;
+ first_name |  last_name   | id
+------------+--------------+-----
+ Webb       | Angrick      |  20
+ Krysta     | Bello        |   6
+ Eleanore   | Benns        |  50
+ Ivonne     | Boal         |  33
+ Amery      | Borge        |  34
+ Vilma      | Bough        |  51
+ Kendall    | Branno       |  26
+ Karyl      | Bulfoy       |  60
+ Shauna     | Burkert      |  11
+ Dud        | Coker        |  12
+ Isiahi     | Coughlan     |  10
+ Mandie     | Creavan      |  83
+ Una        | Crippell     |  45
+ Bellina    | Cullivan     |  42
+ Bert       | Cutler       |  94
+ Fanya      | Dallyn       |  14
+ Tina       | Dincke       |  28
+ Zelma      | Doyle        |  97
+ Bondie     | Duesbury     |  30
+ Gustav     | Duggary      |  46
+ Meagan     | Dungate      |  74
+ Danice     | Eastbury     |   1
+ Desdemona  | Filipczynski |  78
+ Hildagarde | Furlow       |  21
+ Boyce      | Gillicuddy   |  56
+ Fair       | Gladbeck     |  44
+ Jeannie    | Gladebeck    |  90
+ Ruthi      | Goulder      |   9
+ Caroljean  | Govett       |  41
+ Twila      | Gregersen    |  82
+ Ed         | Grigorushkin |  18
+ Emmalynn   | Grouvel      |  38
+ Corissa    | Grube        |  73
+ Callie     | Gryglewski   |  96
+ Gracie     | Hain         |  63
+ Sheelagh   | Hartfield    |  76
+ Colline    | Hindenburg   |  15
+ Cathe      | Horbart      |  36
+^Cpostgres=#
+postgres=#
+postgres=# SELECT DISTINCT country_of_birth FROM persons;
+    country_of_birth
+------------------------
+ Nigeria
+ Indonesia
+ Venezuela
+ Russia
+ China
+ Czech Republic
+ Sweden
+ Norway
+ Brazil
+ Germany
+ Canada
+ Portugal
+ Finland
+ Colombia
+ Ukraine
+ Argentina
+ Croatia
+ Tunisia
+ Mali
+ Azerbaijan
+ Georgia
+ France
+ Nicaragua
+ Mexico
+ South Africa
+ Syria
+ Peru
+ Kazakhstan
+ Palestinian Territory
+ Poland
+ Costa Rica
+ Japan
+ Denmark
+ Bosnia and Herzegovina
+ Philippines
+ Thailand
+ United States
+(37 rows)
+
+
+
+postgres=# SELECT DISTINCT country_of_birth, first_name FROM persons;
+    country_of_birth    | first_name
+------------------------+------------
+ Poland                 | Herbie
+ China                  | Desdemona
+ Indonesia              | Pattie
+ Nigeria                | Rina
+ China                  | Brynna
+ Norway                 | Paige
+ Czech Republic         | Marsiella
+ China                  | Kimberli
+ Brazil                 | Jada
+ Philippines            | Zelma
+ Poland                 | Natividad
+ Indonesia              | Gannon
+ Venezuela              | Caroljean
+ Poland                 | Ericha
+ China                  | Dallis
+ Czech Republic         | Eddie
+ Mexico                 | Noby
+ Russia                 | Jakob
+ China                  | Bellina
+ China                  | Cecilia
+ Indonesia              | Garrett
+ Philippines            | Vilma
+ Indonesia              | Charlie
+ Russia                 | Tina
+ Kazakhstan             | Myrvyn
+ Sweden                 | Twila
+ Croatia                | Ruthi
+ Germany                | Ody
+ China                  | Midge
+ Russia                 | Albertina
+ Japan                  | Glenden
+ China                  | Krysta
+ Brazil                 | Lucas
+ China                  | Farlee
+ Georgia                | Amery
+ Sweden                 | Fayette
+ Azerbaijan             | Sheelagh
+ Argentina              | Bert
+^Cpostgres=#
+postgres=# SELECT DISTINCT country_of_birth,id, first_name FROM persons;
+    country_of_birth    | id  | first_name
+------------------------+-----+------------
+ China                  |  32 | Hillel
+ Russia                 |  98 | Albertina
+ Canada                 |  13 | Blayne
+ Poland                 |  71 | Ericha
+ China                  |  53 | Oliy
+ Argentina              |  94 | Bert
+ Indonesia              |  50 | Eleanore
+ Kazakhstan             |   4 | Myrvyn
+ Sweden                 |  82 | Twila
+ Norway                 |  25 | Hynda
+ China                  |  86 | Farlee
+ China                  |  59 | Fidelio
+ Venezuela              |  41 | Caroljean
+ Mexico                 |  64 | Noby
+ China                  |  21 | Hildagarde
+ Czech Republic         |  40 | Alexandros
+ Finland                |  26 | Kendall
+ China                  |  66 | Mick
+ Russia                 |  87 | Jakob
+ China                  |  38 | Emmalynn
+ China                  |  30 | Bondie
+ Czech Republic         |  24 | Eddie
+ United States          |  10 | Isiahi
+ Denmark                |  17 | Sabina
+ Brazil                 |   1 | Danice
+ China                  |  89 | Midge
+ Georgia                |  34 | Amery
+ Indonesia              |  63 | Gracie
+ China                  |  96 | Callie
+ Brazil                 |  37 | Lucas
+ Indonesia              |  31 | Lorrie
+ Bosnia and Herzegovina |  12 | Dud
+ China                  |  78 | Desdemona
+ China                  |  81 | Kimberli
+ Sweden                 |  93 | Fayette
+ Indonesia              |  23 | Charlie
+ Kazakhstan             |  72 | Lorianne
+ Czech Republic         |  58 | Marsiella
+^Cpostgres=#
+postgres=#
+postgres=# SELECT DISTINCT first_name FROM persons;
+ first_name
+------------
+ Farrell
+ Torre
+ Colline
+ Natividad
+ Tomas
+ Cathe
+ Hillel
+ Sven
+ Noby
+ Kendall
+ Amalle
+ Brynna
+ Gustav
+ Victoria
+ Hildagarde
+ Ruthi
+ Farlee
+ Marsiella
+ Boyce
+ Kerr
+ Emmalynn
+ Eleanore
+ Gerhardt
+ Eddie
+ Lorrie
+ Hynda
+ Jada
+ Dallis
+ Bellina
+ Isiahi
+ Ed
+ Ericha
+ Gracie
+ Viviana
+ Myrvyn
+ Charlie
+ Webb
+ Zelma
+ Meagan
+ Glenden
+ Una
+ Twila
+ Blayne
+ Hillie
+ Sheelagh
+ Shea
+ Nola
+ Fanya
+ Corissa
+ Dud
+ Rina
+ Oliy
+ Lita
+ Ody
+ Midge
+ Mick
+ Alexandros
+ Moshe
+ Andrey
+ Pattie
+ Fair
+ Vilma
+ Gannon
+ Amery
+ Annadiane
+ Karyl
+ Valma
+ Sigvard
+ Albertina
+ Sabina
+ Shauna
+ Fayette
+ Lefty
+ Kimberli
+ Stavros
+ Bondie
+ Garrett
+ Callie
+ Jakob
+ Danice
+ Lorianne
+ Dyana
+ Krysta
+ Raf
+ Cecilia
+ Alfonse
+ Herbie
+ Desdemona
+ Kathlin
+ Lucas
+ Tina
+ Ottilie
+ Jeannie
+ Mandie
+ Fidelio
+ Ivonne
+ Caroljean
+ Heida
+ Paige
+ Bert
+(100 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'male';
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth
+----+------------+-----------+-------+--------+---------------+------------------
+(0 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male';
+ id  | first_name |  last_name   |             email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+--------------------------------+--------+---------------+------------------------
+   2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp           | Male   | 2019-08-10    | South Africa
+   4 | Myrvyn     | Upton        |                                | Male   | 2020-01-01    | Kazakhstan
+  10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org      | Male   | 2020-07-08    | United States
+  12 | Dud        | Coker        | dcokerb@oakley.com             | Male   | 2020-07-01    | Bosnia and Herzegovina
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com     | Male   | 2020-12-12    | Canada
+  18 | Ed         | Grigorushkin |                                | Male   | 2020-05-02    | Philippines
+  19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk           | Male   | 2019-10-21    | China
+  20 | Webb       | Angrick      |                                | Male   | 2019-11-29    | China
+  22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com        | Male   | 2020-05-23    | Indonesia
+  23 | Charlie    | Tapping      | ctappingm@wikispaces.com       | Male   | 2017-09-16    | Indonesia
+  26 | Kendall    | Branno       | kbrannop@cyberchimps.com       | Male   | 2017-04-10    | Finland
+  27 | Sigvard    | Prue         | sprueq@marriott.com            | Male   | 2018-03-19    | Russia
+  30 | Bondie     | Duesbury     | bduesburyt@seattletimes.com    | Male   | 2017-04-06    | China
+  32 | Hillel     | Melledy      |                                | Male   | 2019-11-19    | China
+  34 | Amery      | Borge        | aborgex@jugem.jp               | Male   | 2019-06-05    | Georgia
+  35 | Ody        | Swaton       | oswatony@lulu.com              | Male   | 2018-01-07    | Germany
+  37 | Lucas      | Trenholm     | ltrenholm10@sakura.ne.jp       | Male   | 2016-01-07    | Brazil
+  39 | Tomas      | Sinclar      | tsinclar12@yahoo.com           | Male   | 2016-02-12    | Colombia
+  40 | Alexandros | Sausman      | asausman13@dyndns.org          | Male   | 2017-11-24    | Czech Republic
+  43 | Gannon     | Pace         |                                | Male   | 2018-12-23    | Indonesia
+  44 | Fair       | Gladbeck     | fgladbeck17@huffingtonpost.com | Male   | 2017-11-18    | Ukraine
+  46 | Gustav     | Duggary      |                                | Male   | 2019-07-17    | Indonesia
+  48 | Hillie     | Kryska       | hkryska1b@loc.gov              | Male   | 2016-12-14    | Portugal
+  54 | Andrey     | Pretti       |                                | Male   | 2018-02-11    | Argentina
+  56 | Boyce      | Gillicuddy   | bgillicuddy1j@patch.com        | Male   | 2016-10-17    | Portugal
+  57 | Kerr       | Skegg        | kskegg1k@tamu.edu              | Male   | 2020-06-07    | China
+  59 | Fidelio    | Melling      | fmelling1m@webnode.com         | Male   | 2017-01-12    | China
+  62 | Glenden    | MacGhee      |                                | Male   | 2017-07-12    | Japan
+  64 | Noby       | Lagne        | nlagne1r@eventbrite.com        | Male   | 2017-08-31    | Mexico
+  65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com       | Male   | 2020-10-27    | Indonesia
+  66 | Mick       | Titherington | mtitherington1t@xing.com       | Male   | 2018-09-30    | China
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com          | Male   | 2019-05-27    | Canada
+  69 | Sven       | Martignon    | smartignon1w@pen.io            | Male   | 2016-08-13    | Portugal
+  77 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com  | Male   | 2017-02-24    | Norway
+  79 | Stavros    | Tuddall      |                                | Male   | 2016-02-01    | Portugal
+  84 | Herbie     | Tootell      |                                | Male   | 2020-08-06    | Poland
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com          | Male   | 2017-12-04    | China
+  87 | Jakob      | Pruvost      | jpruvost2e@spiegel.de          | Male   | 2017-09-11    | Russia
+  91 | Torre      | Snell        |                                | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi      |                                | Male   | 2016-04-12    | Philippines
+  94 | Bert       | Cutler       |                                | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens      | fjiggens2m@adobe.com           | Male   | 2017-12-08    | Indonesia
+ 100 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com      | Male   | 2017-08-31    | Russia
+(43 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Female';
+ id | first_name |  last_name   |              email              | gender | date_of_birth |   country_of_birth
+----+------------+--------------+---------------------------------+--------+---------------+-----------------------
+  1 | Danice     | Eastbury     | deastbury0@instagram.com        | Female | 2017-08-13    | Brazil
+  3 | Lita       | Wareing      | lwareing2@deliciousdays.com     | Female | 2017-04-30    | Indonesia
+  5 | Rina       | Muirhead     |                                 | Female | 2018-09-21    | Nigeria
+  6 | Krysta     | Bello        | kbello5@elpais.com              | Female | 2016-12-25    | China
+  7 | Jada       | Merricks     |                                 | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling      | hnewling7@cafepress.com         | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder      | rgoulder8@wired.com             | Female | 2016-05-18    | Croatia
+ 11 | Shauna     | Burkert      | sburkerta@123-reg.co.uk         | Female | 2018-09-13    | Brazil
+ 14 | Fanya      | Dallyn       | fdallynd@mozilla.com            | Female | 2017-08-12    | Mali
+ 15 | Colline    | Hindenburg   | chindenburge@posterous.com      | Female | 2017-06-27    | Thailand
+ 16 | Nola       | Stit         | nstitf@cornell.edu              | Female | 2018-07-17    | Indonesia
+ 17 | Sabina     | Mangenot     | smangenotg@accuweather.com      | Female | 2020-07-18    | Denmark
+ 21 | Hildagarde | Furlow       | hfurlowk@craigslist.org         | Female | 2020-10-28    | China
+ 24 | Eddie      | Lineker      | elinekern@odnoklassniki.ru      | Female | 2018-05-16    | Czech Republic
+ 25 | Hynda      | Offell       | hoffello@bbb.org                | Female | 2017-07-20    | Norway
+ 28 | Tina       | Dincke       | tdincker@fotki.com              | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich    |                                 | Female | 2018-10-25    | Finland
+ 31 | Lorrie     | Percy        |                                 | Female | 2019-11-30    | Indonesia
+ 33 | Ivonne     | Boal         | iboalw@ucoz.com                 | Female | 2018-01-14    | Japan
+ 36 | Cathe      | Horbart      | chorbartz@telegraph.co.uk       | Female | 2018-03-12    | Nicaragua
+ 38 | Emmalynn   | Grouvel      |                                 | Female | 2016-04-03    | China
+ 41 | Caroljean  | Govett       | cgovett14@so-net.ne.jp          | Female | 2018-08-23    | Venezuela
+ 42 | Bellina    | Cullivan     |                                 | Female | 2020-01-11    | China
+ 45 | Una        | Crippell     | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+ 47 | Viviana    | Kerwood      |                                 | Female | 2019-12-16    | Portugal
+ 49 | Kathlin    | Lyokhin      | klyokhin1c@wikispaces.com       | Female | 2020-10-31    | Argentina
+ 50 | Eleanore   | Benns        | ebenns1d@yellowbook.com         | Female | 2016-12-14    | Indonesia
+ 51 | Vilma      | Bough        | vbough1e@army.mil               | Female | 2017-11-17    | Philippines
+ 52 | Annadiane  | Wenham       | awenham1f@free.fr               | Female | 2018-06-20    | Tunisia
+ 53 | Oliy       | Powis        | opowis1g@ox.ac.uk               | Female | 2020-05-23    | China
+ 55 | Cecilia    | Mably        | cmably1i@squidoo.com            | Female | 2019-06-10    | China
+ 58 | Marsiella  | Kornes       |                                 | Female | 2016-08-03    | Czech Republic
+ 60 | Karyl      | Bulfoy       | kbulfoy1n@t-online.de           | Female | 2020-10-08    | Peru
+ 61 | Ottilie    | MacSkeaghan  | omacskeaghan1o@arstechnica.com  | Female | 2019-04-13    | China
+ 63 | Gracie     | Hain         | ghain1q@phoca.cz                | Female | 2015-12-14    | Indonesia
+ 68 | Natividad  | Le Jean      |                                 | Female | 2020-03-02    | Poland
+ 70 | Victoria   | Jakuszewski  | vjakuszewski1x@sakura.ne.jp     | Female | 2017-08-14    | Peru
+ 71 | Ericha     | Igglesden    |                                 | Female | 2018-05-19    | Poland
+ 72 | Lorianne   | McQuade      | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+ 73 | Corissa    | Grube        |                                 | Female | 2020-07-31    | Sweden
+ 74 | Meagan     | Dungate      | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+ 75 | Amalle     | Macellar     | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+ 76 | Sheelagh   | Hartfield    |                                 | Female | 2018-08-06    | Azerbaijan
+ 78 | Desdemona  | Filipczynski |                                 | Female | 2016-05-31    | China
+ 80 | Raf        | Olczyk       |                                 | Female | 2016-01-17    | France
+ 81 | Kimberli   | Orcott       |                                 | Female | 2016-12-31    | China
+ 82 | Twila      | Gregersen    |                                 | Female | 2018-06-04    | Sweden
+ 83 | Mandie     | Creavan      |                                 | Female | 2017-10-22    | Syria
+ 85 | Dyana      | Ventura      | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+ 88 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+ 89 | Midge      | McMorland    | mmcmorland2g@trellian.com       | Female | 2017-06-13    | China
+ 90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+ 93 | Fayette    | Lapley       |                                 | Female | 2017-04-29    | Sweden
+ 96 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+ 97 | Zelma      | Doyle        |                                 | Female | 2016-08-14    | Philippines
+ 98 | Albertina  | Teek         | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+ 99 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+(57 rows)
+
+
+postgres=#  SELECT DISTINCT gender FROM persons;
+ gender
+--------
+ Female
+ Male
+(2 rows)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth = 'Russia';
+ id  | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------+--------+---------------+------------------
+  27 | Sigvard    | Prue      | sprueq@marriott.com       | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke    | tdincker@fotki.com        | Female | 2018-04-14    | Russia
+  74 | Meagan     | Dungate   | mdungate21@paypal.com     | Female | 2017-02-11    | Russia
+  87 | Jakob      | Pruvost   | jpruvost2e@spiegel.de     | Male   | 2017-09-11    | Russia
+  98 | Albertina  | Teek      | ateek2p@arizona.edu       | Female | 2018-10-19    | Russia
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth = 'Russia' OR 'Swedan';
+ERROR:  invalid input syntax for type boolean: "Swedan"
+LINE 1: ... FROM persons WHERE country_of_birth = 'Russia' OR 'Swedan';
+                                                              ^
+postgres=# SELECT * FROM persons WHERE country_of_birth = 'Russia' OR country_of_birth= 'Swedan';
+ id  | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------+--------+---------------+------------------
+  27 | Sigvard    | Prue      | sprueq@marriott.com       | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke    | tdincker@fotki.com        | Female | 2018-04-14    | Russia
+  74 | Meagan     | Dungate   | mdungate21@paypal.com     | Female | 2017-02-11    | Russia
+  87 | Jakob      | Pruvost   | jpruvost2e@spiegel.de     | Male   | 2017-09-11    | Russia
+  98 | Albertina  | Teek      | ateek2p@arizona.edu       | Female | 2018-10-19    | Russia
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth = 'Russia' OR country_of_birth= 'Sweden';
+ id  | first_name | last_name |              email              | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------------+--------+---------------+------------------
+  27 | Sigvard    | Prue      | sprueq@marriott.com             | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke    | tdincker@fotki.com              | Female | 2018-04-14    | Russia
+  73 | Corissa    | Grube     |                                 | Female | 2020-07-31    | Sweden
+  74 | Meagan     | Dungate   | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+  75 | Amalle     | Macellar  | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+  82 | Twila      | Gregersen |                                 | Female | 2018-06-04    | Sweden
+  87 | Jakob      | Pruvost   | jpruvost2e@spiegel.de           | Male   | 2017-09-11    | Russia
+  93 | Fayette    | Lapley    |                                 | Female | 2017-04-29    | Sweden
+  98 | Albertina  | Teek      | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com       | Male   | 2017-08-31    | Russia
+(10 rows)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth = 'Russia' OR country_of_birth= 'Sweden' AND (country_of_birth = 'Poland');
+ id  | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------+--------+---------------+------------------
+  27 | Sigvard    | Prue      | sprueq@marriott.com       | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke    | tdincker@fotki.com        | Female | 2018-04-14    | Russia
+  74 | Meagan     | Dungate   | mdungate21@paypal.com     | Female | 2017-02-11    | Russia
+  87 | Jakob      | Pruvost   | jpruvost2e@spiegel.de     | Male   | 2017-09-11    | Russia
+  98 | Albertina  | Teek      | ateek2p@arizona.edu       | Female | 2018-10-19    | Russia
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' AND (country_of_birth ='Poland' OR country_of_birth = 'Brazil');
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+ 37 | Lucas      | Trenholm  | ltrenholm10@sakura.ne.jp | Male   | 2016-01-07    | Brazil
+ 84 | Herbie     | Tootell   |                          | Male   | 2020-08-06    | Poland
+(2 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' AND (country_of_birth ='Poland' OR country_of_birth = 'Brazil') AND last_name = 'Teek';
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth
+----+------------+-----------+-------+--------+---------------+------------------
+(0 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' AND (country_of_birth ='Poland' OR country_of_birth = 'Brazil') OR  last_name = 'Teek';
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+ 37 | Lucas      | Trenholm  | ltrenholm10@sakura.ne.jp | Male   | 2016-01-07    | Brazil
+ 84 | Herbie     | Tootell   |                          | Male   | 2020-08-06    | Poland
+ 98 | Albertina  | Teek      | ateek2p@arizona.edu      | Female | 2018-10-19    | Russia
+(3 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Female' AND (country_of_birth ='Russia' OR country_of_birth = 'Brazil') OR  last_name = 'Teek';
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com | Female | 2017-08-13    | Brazil
+  7 | Jada       | Merricks  |                          | Female | 2017-04-07    | Brazil
+ 11 | Shauna     | Burkert   | sburkerta@123-reg.co.uk  | Female | 2018-09-13    | Brazil
+ 28 | Tina       | Dincke    | tdincker@fotki.com       | Female | 2018-04-14    | Russia
+ 74 | Meagan     | Dungate   | mdungate21@paypal.com    | Female | 2017-02-11    | Russia
+ 98 | Albertina  | Teek      | ateek2p@arizona.edu      | Female | 2018-10-19    | Russia
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Female' AND (country_of_birth ='Russia' OR country_of_birth = 'Brazil') AND  last_name = 'Teek';
+ id | first_name | last_name |        email        | gender | date_of_birth | country_of_birth
+----+------------+-----------+---------------------+--------+---------------+------------------
+ 98 | Albertina  | Teek      | ateek2p@arizona.edu | Female | 2018-10-19    | Russia
+(1 row)
+
+
+postgres=#
+
+
+----------------########################################------------------Comparison Operators------------------#####################################################
+
+
+postgres=# SELECT 1 =2 ;
+ ?column?
+----------
+ f
+(1 row)
+
+
+postgres=# SELECT 1<= 3;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 1<2;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 1>2;
+ ?column?
+----------
+ f
+(1 row)
+
+
+postgres=# SELECT 1<=1;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 1>= -1;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 2 <=1;
+ ?column?
+----------
+ f
+(1 row)
+
+
+postgres=# SELECT 2<>1;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 1 <> 1;
+ ?column?
+----------
+ f
+(1 row)
+
+
+postgres=# SELECT 1<>2;
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 'BHRATHI' <> 'bharathi';
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 'BHARATHI' <> 'BHARATHI';
+ ?column?
+----------
+ f
+(1 row)
+
+
+postgres=# SELECT 'bharathi' <> 'BHARATHI';
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 'bharathi' <= 'BHARATHI';
+ ?column?
+----------
+ t
+(1 row)
+
+
+postgres=# SELECT 'BHARATHI' => 'BHARATHI';
+ERROR:  syntax error at or near "=>"
+LINE 1: SELECT 'BHARATHI' => 'BHARATHI';
+                          ^
+postgres=# SELECT 'BHARATHI' <= 'BHARATHI';
+ ?column?
+----------
+ t
+(1 row)
+
+
+ostgres=# SELECT * FROM persons WHERE gender <>'Female';
+ id  | first_name |  last_name   |             email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+--------------------------------+--------+---------------+------------------------
+   2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp           | Male   | 2019-08-10    | South Africa
+   4 | Myrvyn     | Upton        |                                | Male   | 2020-01-01    | Kazakhstan
+  10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org      | Male   | 2020-07-08    | United States
+  12 | Dud        | Coker        | dcokerb@oakley.com             | Male   | 2020-07-01    | Bosnia and Herzegovina
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com     | Male   | 2020-12-12    | Canada
+  18 | Ed         | Grigorushkin |                                | Male   | 2020-05-02    | Philippines
+  19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk           | Male   | 2019-10-21    | China
+  20 | Webb       | Angrick      |                                | Male   | 2019-11-29    | China
+  22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com        | Male   | 2020-05-23    | Indonesia
+  23 | Charlie    | Tapping      | ctappingm@wikispaces.com       | Male   | 2017-09-16    | Indonesia
+  26 | Kendall    | Branno       | kbrannop@cyberchimps.com       | Male   | 2017-04-10    | Finland
+  27 | Sigvard    | Prue         | sprueq@marriott.com            | Male   | 2018-03-19    | Russia
+  30 | Bondie     | Duesbury     | bduesburyt@seattletimes.com    | Male   | 2017-04-06    | China
+  32 | Hillel     | Melledy      |                                | Male   | 2019-11-19    | China
+  34 | Amery      | Borge        | aborgex@jugem.jp               | Male   | 2019-06-05    | Georgia
+  35 | Ody        | Swaton       | oswatony@lulu.com              | Male   | 2018-01-07    | Germany
+  37 | Lucas      | Trenholm     | ltrenholm10@sakura.ne.jp       | Male   | 2016-01-07    | Brazil
+  39 | Tomas      | Sinclar      | tsinclar12@yahoo.com           | Male   | 2016-02-12    | Colombia
+  40 | Alexandros | Sausman      | asausman13@dyndns.org          | Male   | 2017-11-24    | Czech Republic
+  43 | Gannon     | Pace         |                                | Male   | 2018-12-23    | Indonesia
+  44 | Fair       | Gladbeck     | fgladbeck17@huffingtonpost.com | Male   | 2017-11-18    | Ukraine
+  46 | Gustav     | Duggary      |                                | Male   | 2019-07-17    | Indonesia
+  48 | Hillie     | Kryska       | hkryska1b@loc.gov              | Male   | 2016-12-14    | Portugal
+  54 | Andrey     | Pretti       |                                | Male   | 2018-02-11    | Argentina
+  56 | Boyce      | Gillicuddy   | bgillicuddy1j@patch.com        | Male   | 2016-10-17    | Portugal
+  57 | Kerr       | Skegg        | kskegg1k@tamu.edu              | Male   | 2020-06-07    | China
+  59 | Fidelio    | Melling      | fmelling1m@webnode.com         | Male   | 2017-01-12    | China
+  62 | Glenden    | MacGhee      |                                | Male   | 2017-07-12    | Japan
+  64 | Noby       | Lagne        | nlagne1r@eventbrite.com        | Male   | 2017-08-31    | Mexico
+  65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com       | Male   | 2020-10-27    | Indonesia
+  66 | Mick       | Titherington | mtitherington1t@xing.com       | Male   | 2018-09-30    | China
+  67 | Moshe      | Maunders     | mmaunders1u@mysql.com          | Male   | 2019-05-27    | Canada
+  69 | Sven       | Martignon    | smartignon1w@pen.io            | Male   | 2016-08-13    | Portugal
+  77 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com  | Male   | 2017-02-24    | Norway
+  79 | Stavros    | Tuddall      |                                | Male   | 2016-02-01    | Portugal
+  84 | Herbie     | Tootell      |                                | Male   | 2020-08-06    | Poland
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com          | Male   | 2017-12-04    | China
+  87 | Jakob      | Pruvost      | jpruvost2e@spiegel.de          | Male   | 2017-09-11    | Russia
+^Cpostgres=#
+postgres=#
+postgres=# SELECT * FROM persons WHERE id >86;
+ id  | first_name | last_name  |           email            | gender | date_of_birth |   country_of_birth
+-----+------------+------------+----------------------------+--------+---------------+-----------------------
+  87 | Jakob      | Pruvost    | jpruvost2e@spiegel.de      | Male   | 2017-09-11    | Russia
+  88 | Shea       | Ruggles    |                            | Female | 2019-02-12    | China
+  89 | Midge      | McMorland  | mmcmorland2g@trellian.com  | Female | 2017-06-13    | China
+  90 | Jeannie    | Gladebeck  | jgladebeck2h@economist.com | Female | 2020-06-02    | Palestinian Territory
+  91 | Torre      | Snell      |                            | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi    |                            | Male   | 2016-04-12    | Philippines
+  93 | Fayette    | Lapley     |                            | Female | 2017-04-29    | Sweden
+  94 | Bert       | Cutler     |                            | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens    | fjiggens2m@adobe.com       | Male   | 2017-12-08    | Indonesia
+  96 | Callie     | Gryglewski |                            | Female | 2019-04-13    | China
+  97 | Zelma      | Doyle      |                            | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek       | ateek2p@arizona.edu        | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow     | bmarlow2q@google.com       | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet  | ascanderet2r@cbslocal.com  | Male   | 2017-08-31    | Russia
+(14 rows)
+
+
+postgres=# SELECT * FROM persons WHERE id<7;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth
+----+------------+-----------+-----------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria
+  6 | Krysta     | Bello     | kbello5@elpais.com          | Female | 2016-12-25    | China
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth <>'China' AND id > 50;
+ id  | first_name |  last_name  |              email              | gender | date_of_birth |   country_of_birth
+-----+------------+-------------+---------------------------------+--------+---------------+-----------------------
+  51 | Vilma      | Bough       | vbough1e@army.mil               | Female | 2017-11-17    | Philippines
+  52 | Annadiane  | Wenham      | awenham1f@free.fr               | Female | 2018-06-20    | Tunisia
+  54 | Andrey     | Pretti      |                                 | Male   | 2018-02-11    | Argentina
+  56 | Boyce      | Gillicuddy  | bgillicuddy1j@patch.com         | Male   | 2016-10-17    | Portugal
+  58 | Marsiella  | Kornes      |                                 | Female | 2016-08-03    | Czech Republic
+  60 | Karyl      | Bulfoy      | kbulfoy1n@t-online.de           | Female | 2020-10-08    | Peru
+  62 | Glenden    | MacGhee     |                                 | Male   | 2017-07-12    | Japan
+  63 | Gracie     | Hain        | ghain1q@phoca.cz                | Female | 2015-12-14    | Indonesia
+  64 | Noby       | Lagne       | nlagne1r@eventbrite.com         | Male   | 2017-08-31    | Mexico
+  65 | Pattie     | McCaffery   | pmccaffery1s@godaddy.com        | Male   | 2020-10-27    | Indonesia
+  67 | Moshe      | Maunders    | mmaunders1u@mysql.com           | Male   | 2019-05-27    | Canada
+  68 | Natividad  | Le Jean     |                                 | Female | 2020-03-02    | Poland
+  69 | Sven       | Martignon   | smartignon1w@pen.io             | Male   | 2016-08-13    | Portugal
+  70 | Victoria   | Jakuszewski | vjakuszewski1x@sakura.ne.jp     | Female | 2017-08-14    | Peru
+  71 | Ericha     | Igglesden   |                                 | Female | 2018-05-19    | Poland
+  72 | Lorianne   | McQuade     | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+  73 | Corissa    | Grube       |                                 | Female | 2020-07-31    | Sweden
+  74 | Meagan     | Dungate     | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+  75 | Amalle     | Macellar    | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+  76 | Sheelagh   | Hartfield   |                                 | Female | 2018-08-06    | Azerbaijan
+  77 | Paige      | MacFarlane  | pmacfarlane24@bizjournals.com   | Male   | 2017-02-24    | Norway
+  79 | Stavros    | Tuddall     |                                 | Male   | 2016-02-01    | Portugal
+  80 | Raf        | Olczyk      |                                 | Female | 2016-01-17    | France
+  82 | Twila      | Gregersen   |                                 | Female | 2018-06-04    | Sweden
+  83 | Mandie     | Creavan     |                                 | Female | 2017-10-22    | Syria
+  84 | Herbie     | Tootell     |                                 | Male   | 2020-08-06    | Poland
+  85 | Dyana      | Ventura     | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+  87 | Jakob      | Pruvost     | jpruvost2e@spiegel.de           | Male   | 2017-09-11    | Russia
+  90 | Jeannie    | Gladebeck   | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+  91 | Torre      | Snell       |                                 | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi     |                                 | Male   | 2016-04-12    | Philippines
+  93 | Fayette    | Lapley      |                                 | Female | 2017-04-29    | Sweden
+  94 | Bert       | Cutler      |                                 | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens     | fjiggens2m@adobe.com            | Male   | 2017-12-08    | Indonesia
+  97 | Zelma      | Doyle       |                                 | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek        | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+ 100 | Alfonse    | Scanderet   | ascanderet2r@cbslocal.com       | Male   | 2017-08-31    | Russia
+(37 rows)
+^Cpostgres=#
+postgres=# SELECT * FROM persons WHERE date_of_birth > '2019-12-31';
+ id | first_name |  last_name   |           email            | gender | date_of_birth |    country_of_birth
+----+------------+--------------+----------------------------+--------+---------------+------------------------
+  4 | Myrvyn     | Upton        |                            | Male   | 2020-01-01    | Kazakhstan
+ 10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org  | Male   | 2020-07-08    | United States
+ 12 | Dud        | Coker        | dcokerb@oakley.com         | Male   | 2020-07-01    | Bosnia and Herzegovina
+ 13 | Blayne     | Willerson    | bwillersonc@techcrunch.com | Male   | 2020-12-12    | Canada
+ 17 | Sabina     | Mangenot     | smangenotg@accuweather.com | Female | 2020-07-18    | Denmark
+ 18 | Ed         | Grigorushkin |                            | Male   | 2020-05-02    | Philippines
+ 21 | Hildagarde | Furlow       | hfurlowk@craigslist.org    | Female | 2020-10-28    | China
+ 22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com    | Male   | 2020-05-23    | Indonesia
+ 42 | Bellina    | Cullivan     |                            | Female | 2020-01-11    | China
+ 49 | Kathlin    | Lyokhin      | klyokhin1c@wikispaces.com  | Female | 2020-10-31    | Argentina
+ 53 | Oliy       | Powis        | opowis1g@ox.ac.uk          | Female | 2020-05-23    | China
+ 57 | Kerr       | Skegg        | kskegg1k@tamu.edu          | Male   | 2020-06-07    | China
+ 60 | Karyl      | Bulfoy       | kbulfoy1n@t-online.de      | Female | 2020-10-08    | Peru
+ 65 | Pattie     | McCaffery    | pmccaffery1s@godaddy.com   | Male   | 2020-10-27    | Indonesia
+ 68 | Natividad  | Le Jean      |                            | Female | 2020-03-02    | Poland
+ 73 | Corissa    | Grube        |                            | Female | 2020-07-31    | Sweden
+ 84 | Herbie     | Tootell      |                            | Male   | 2020-08-06    | Poland
+ 90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com | Female | 2020-06-02    | Palestinian Territory
+ 94 | Bert       | Cutler       |                            | Male   | 2020-06-01    | Argentina
+(19 rows)
+
+
+postgres=# SELECT * FROM persons WHERE date_of_birth = '2019-12-31';
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth
+----+------------+-----------+-------+--------+---------------+------------------
+(0 rows)
+
+
+postgres=# SELECT * FROM persons WHERE date_of_birth = '2020-10-31';
+ id | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+---------------------------+--------+---------------+------------------
+ 49 | Kathlin    | Lyokhin   | klyokhin1c@wikispaces.com | Female | 2020-10-31    | Argentina
+(1 row)
+
+
+postgres=# SELECT * FROM persons WHERE country_of_birth  = 'Argentina';
+ id | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+---------------------------+--------+---------------+------------------
+ 49 | Kathlin    | Lyokhin   | klyokhin1c@wikispaces.com | Female | 2020-10-31    | Argentina
+ 54 | Andrey     | Pretti    |                           | Male   | 2018-02-11    | Argentina
+ 94 | Bert       | Cutler    |                           | Male   | 2020-06-01    | Argentina
+(3 rows)
+
+
+postgres=# SELECT * FROM persons WHERE id >= 95;
+ id  | first_name | last_name  |           email           | gender | date_of_birth | country_of_birth
+-----+------------+------------+---------------------------+--------+---------------+------------------
+  95 | Farrell    | Jiggens    | fjiggens2m@adobe.com      | Male   | 2017-12-08    | Indonesia
+  96 | Callie     | Gryglewski |                           | Female | 2019-04-13    | China
+  97 | Zelma      | Doyle      |                           | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek       | ateek2p@arizona.edu       | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow     | bmarlow2q@google.com      | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet  | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE id <= 6 ;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth
+----+------------+-----------+-----------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria
+  6 | Krysta     | Bello     | kbello5@elpais.com          | Female | 2016-12-25    | China
+(6 rows)
+
+
+postgres=# SELECT * FROM persons WHERE first_name = 'Krysta';
+ id | first_name | last_name |       email        | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------+--------+---------------+------------------
+  6 | Krysta     | Bello     | kbello5@elpais.com | Female | 2016-12-25    | China
+(1 row)
+
+--##############################------LIMIT, OFFSET, FETCH------------------------######################################################-------------------------
+
+postgres=# SELECT * FROM persons LIMIT 15;
+ id | first_name | last_name  |            email            | gender | date_of_birth |    country_of_birth
+----+------------+------------+-----------------------------+--------+---------------+------------------------
+  1 | Danice     | Eastbury   | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk     | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing    | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton      |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead   |                             | Female | 2018-09-21    | Nigeria
+  6 | Krysta     | Bello      | kbello5@elpais.com          | Female | 2016-12-25    | China
+  7 | Jada       | Merricks   |                             | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling    | hnewling7@cafepress.com     | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder    | rgoulder8@wired.com         | Female | 2016-05-18    | Croatia
+ 10 | Isiahi     | Coughlan   | icoughlan9@craigslist.org   | Male   | 2020-07-08    | United States
+ 11 | Shauna     | Burkert    | sburkerta@123-reg.co.uk     | Female | 2018-09-13    | Brazil
+ 12 | Dud        | Coker      | dcokerb@oakley.com          | Male   | 2020-07-01    | Bosnia and Herzegovina
+ 13 | Blayne     | Willerson  | bwillersonc@techcrunch.com  | Male   | 2020-12-12    | Canada
+ 14 | Fanya      | Dallyn     | fdallynd@mozilla.com        | Female | 2017-08-12    | Mali
+ 15 | Colline    | Hindenburg | chindenburge@posterous.com  | Female | 2017-06-27    | Thailand
+(15 rows)
+
+                              
+postgres=# SELECT * FROM persons LIMIT 10;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth
+----+------------+-----------+-----------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria
+  6 | Krysta     | Bello     | kbello5@elpais.com          | Female | 2016-12-25    | China
+  7 | Jada       | Merricks  |                             | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling   | hnewling7@cafepress.com     | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder   | rgoulder8@wired.com         | Female | 2016-05-18    | Croatia
+ 10 | Isiahi     | Coughlan  | icoughlan9@craigslist.org   | Male   | 2020-07-08    | United States
+(10 rows)
+
+
+postgres=# SELECT * FROM persons LIMIT 5;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth
+----+------------+-----------+-----------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria
+(5 rows)
+
+
+postgres=# SELECT first_name , gender FROM persons WHERE gender = 'Female' LIMIT 10;
+ first_name | gender
+------------+--------
+ Danice     | Female
+ Lita       | Female
+ Rina       | Female
+ Krysta     | Female
+ Jada       | Female
+ Heida      | Female
+ Ruthi      | Female
+ Shauna     | Female
+ Fanya      | Female
+ Colline    | Female
+(10 rows)
+
+
+postgres=# SELECT first_name , gender FROM persons WHERE gender = 'Female' LIMIT 3;
+ first_name | gender
+------------+--------
+ Danice     | Female
+ Lita       | Female
+ Rina       | Female
+(3 rows)
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' OR country_of_birth = 'Russia' LIMIT 8 ;
+ id | first_name |  last_name   |           email            | gender | date_of_birth |    country_of_birth
+----+------------+--------------+----------------------------+--------+---------------+------------------------
+  2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp       | Male   | 2019-08-10    | South Africa
+  4 | Myrvyn     | Upton        |                            | Male   | 2020-01-01    | Kazakhstan
+ 10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org  | Male   | 2020-07-08    | United States
+ 12 | Dud        | Coker        | dcokerb@oakley.com         | Male   | 2020-07-01    | Bosnia and Herzegovina
+ 13 | Blayne     | Willerson    | bwillersonc@techcrunch.com | Male   | 2020-12-12    | Canada
+ 18 | Ed         | Grigorushkin |                            | Male   | 2020-05-02    | Philippines
+ 19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk       | Male   | 2019-10-21    | China
+ 20 | Webb       | Angrick      |                            | Male   | 2019-11-29    | China
+(8 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' AND  country_of_birth = 'Russia' LIMIT 8 ;
+ id  | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------+--------+---------------+------------------
+  27 | Sigvard    | Prue      | sprueq@marriott.com       | Male   | 2018-03-19    | Russia
+  87 | Jakob      | Pruvost   | jpruvost2e@spiegel.de     | Male   | 2017-09-11    | Russia
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(3 rows)
+
+
+postgres=# SELECT * FROM persons WHERE gender = 'Male' OR country_of_birth = 'Russia' LIMIT 1;
+ id | first_name | last_name |        email         | gender | date_of_birth | country_of_birth
+----+------------+-----------+----------------------+--------+---------------+------------------
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp | Male   | 2019-08-10    | South Africa
+(1 row)
+
+
+postgres=# SELECT * FROM persons OFFSET 5 LIMIT 10;
+ id | first_name | last_name  |           email            | gender | date_of_birth |    country_of_birth
+----+------------+------------+----------------------------+--------+---------------+------------------------
+  6 | Krysta     | Bello      | kbello5@elpais.com         | Female | 2016-12-25    | China
+  7 | Jada       | Merricks   |                            | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling    | hnewling7@cafepress.com    | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder    | rgoulder8@wired.com        | Female | 2016-05-18    | Croatia
+ 10 | Isiahi     | Coughlan   | icoughlan9@craigslist.org  | Male   | 2020-07-08    | United States
+ 11 | Shauna     | Burkert    | sburkerta@123-reg.co.uk    | Female | 2018-09-13    | Brazil
+ 12 | Dud        | Coker      | dcokerb@oakley.com         | Male   | 2020-07-01    | Bosnia and Herzegovina
+ 13 | Blayne     | Willerson  | bwillersonc@techcrunch.com | Male   | 2020-12-12    | Canada
+ 14 | Fanya      | Dallyn     | fdallynd@mozilla.com       | Female | 2017-08-12    | Mali
+ 15 | Colline    | Hindenburg | chindenburge@posterous.com | Female | 2017-06-27    | Thailand
+(10 rows)
+
+
+postgres=# SELECT * FROM persons OFFSET 15 LIMIT 5;
+ id | first_name |  last_name   |           email            | gender | date_of_birth | country_of_birth
+----+------------+--------------+----------------------------+--------+---------------+------------------
+ 16 | Nola       | Stit         | nstitf@cornell.edu         | Female | 2018-07-17    | Indonesia
+ 17 | Sabina     | Mangenot     | smangenotg@accuweather.com | Female | 2020-07-18    | Denmark
+ 18 | Ed         | Grigorushkin |                            | Male   | 2020-05-02    | Philippines
+ 19 | Dallis     | Perkins      | dperkinsi@ebay.co.uk       | Male   | 2019-10-21    | China
+ 20 | Webb       | Angrick      |                            | Male   | 2019-11-29    | China
+(5 rows)
+
+
+postgres=# SELECT * FROM persons OFFSET 75 LIMIT 25;
+ id  | first_name |  last_name   |             email             | gender | date_of_birth |   country_of_birth
+-----+------------+--------------+-------------------------------+--------+---------------+-----------------------
+  76 | Sheelagh   | Hartfield    |                               | Female | 2018-08-06    | Azerbaijan
+  77 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com | Male   | 2017-02-24    | Norway
+  78 | Desdemona  | Filipczynski |                               | Female | 2016-05-31    | China
+  79 | Stavros    | Tuddall      |                               | Male   | 2016-02-01    | Portugal
+  80 | Raf        | Olczyk       |                               | Female | 2016-01-17    | France
+  81 | Kimberli   | Orcott       |                               | Female | 2016-12-31    | China
+  82 | Twila      | Gregersen    |                               | Female | 2018-06-04    | Sweden
+  83 | Mandie     | Creavan      |                               | Female | 2017-10-22    | Syria
+  84 | Herbie     | Tootell      |                               | Male   | 2020-08-06    | Poland
+  85 | Dyana      | Ventura      | dventura2c@google.com.hk      | Female | 2017-03-12    | Canada
+  86 | Farlee     | Schaffel     | fschaffel2d@jigsy.com         | Male   | 2017-12-04    | China
+  87 | Jakob      | Pruvost      | jpruvost2e@spiegel.de         | Male   | 2017-09-11    | Russia
+  88 | Shea       | Ruggles      |                               | Female | 2019-02-12    | China
+  89 | Midge      | McMorland    | mmcmorland2g@trellian.com     | Female | 2017-06-13    | China
+  90 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com    | Female | 2020-06-02    | Palestinian Territory
+  91 | Torre      | Snell        |                               | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi      |                               | Male   | 2016-04-12    | Philippines
+  93 | Fayette    | Lapley       |                               | Female | 2017-04-29    | Sweden
+  94 | Bert       | Cutler       |                               | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens      | fjiggens2m@adobe.com          | Male   | 2017-12-08    | Indonesia
+  96 | Callie     | Gryglewski   |                               | Female | 2019-04-13    | China
+  97 | Zelma      | Doyle        |                               | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek         | ateek2p@arizona.edu           | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow       | bmarlow2q@google.com          | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com     | Male   | 2017-08-31    | Russia
+(25 rows)
+
+
+postgres=# SELECT * FROM persons OFFSET 18 LIMIT 2 ;
+ id | first_name | last_name |        email         | gender | date_of_birth | country_of_birth
+----+------------+-----------+----------------------+--------+---------------+------------------
+ 19 | Dallis     | Perkins   | dperkinsi@ebay.co.uk | Male   | 2019-10-21    | China
+ 20 | Webb       | Angrick   |                      | Male   | 2019-11-29    | China
+(2 rows)
+
+
+postgres=# SELECT * FROM persons OFFSET 25 LIMIT 4 ;
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+ 26 | Kendall    | Branno    | kbrannop@cyberchimps.com | Male   | 2017-04-10    | Finland
+ 27 | Sigvard    | Prue      | sprueq@marriott.com      | Male   | 2018-03-19    | Russia
+ 28 | Tina       | Dincke    | tdincker@fotki.com       | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich |                          | Female | 2018-10-25    | Finland
+(4 rows)
+
+
+   
+postgres=# SELECT * FROM persons OFFSET 96;
+ id  | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------+--------+---------------+------------------
+  97 | Zelma      | Doyle     |                           | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek      | ateek2p@arizona.edu       | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow    | bmarlow2q@google.com      | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet | ascanderet2r@cbslocal.com | Male   | 2017-08-31    | Russia
+(4 rows)
+
+
+postgres=# SELECT * FROM persons OFFSET 85;
+ id  | first_name | last_name  |           email            | gender | date_of_birth |   country_of_birth
+-----+------------+------------+----------------------------+--------+---------------+-----------------------
+  86 | Farlee     | Schaffel   | fschaffel2d@jigsy.com      | Male   | 2017-12-04    | China
+  87 | Jakob      | Pruvost    | jpruvost2e@spiegel.de      | Male   | 2017-09-11    | Russia
+  88 | Shea       | Ruggles    |                            | Female | 2019-02-12    | China
+  89 | Midge      | McMorland  | mmcmorland2g@trellian.com  | Female | 2017-06-13    | China
+  90 | Jeannie    | Gladebeck  | jgladebeck2h@economist.com | Female | 2020-06-02    | Palestinian Territory
+  91 | Torre      | Snell      |                            | Male   | 2019-08-15    | Portugal
+  92 | Lefty      | Iorizzi    |                            | Male   | 2016-04-12    | Philippines
+  93 | Fayette    | Lapley     |                            | Female | 2017-04-29    | Sweden
+  94 | Bert       | Cutler     |                            | Male   | 2020-06-01    | Argentina
+  95 | Farrell    | Jiggens    | fjiggens2m@adobe.com       | Male   | 2017-12-08    | Indonesia
+  96 | Callie     | Gryglewski |                            | Female | 2019-04-13    | China
+  97 | Zelma      | Doyle      |                            | Female | 2016-08-14    | Philippines
+  98 | Albertina  | Teek       | ateek2p@arizona.edu        | Female | 2018-10-19    | Russia
+  99 | Brynna     | Marlow     | bmarlow2q@google.com       | Female | 2018-12-30    | China
+ 100 | Alfonse    | Scanderet  | ascanderet2r@cbslocal.com  | Male   | 2017-08-31    | Russia
+(15 rows)
+
+postgres=# SELECT * FROM persons FETCH FIRST 5 ROW ONLY ;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth
+----+------------+-----------+-----------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  4 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan
+  5 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria
+(5 rows)
+
+postgres=# SELECT first_name , email FROM persons FETCH FIRST 8 ROW ONLY;
+ first_name |            email
+------------+-----------------------------
+ Danice     | deastbury0@instagram.com
+ Gerhardt   | gmcgurk1@plala.or.jp
+ Lita       | lwareing2@deliciousdays.com
+ Myrvyn     |
+ Rina       |
+ Krysta     | kbello5@elpais.com
+ Jada       |
+ Heida      | hnewling7@cafepress.com
+(8 rows)
+
+
+postgres=# SELECT last_name , country_of_birth FROM persons FETCH FIRST 6 ROW ONLY;
+ last_name | country_of_birth
+-----------+------------------
+ Eastbury  | Brazil
+ McGurk    | South Africa
+ Wareing   | Indonesia
+ Upton     | Kazakhstan
+ Muirhead  | Nigeria
+ Bello     | China
+(6 rows)
+
