@@ -1,0 +1,641 @@
+-> Primary Key constraint
+-> Unique Key Constraint
+-> Check Constraint
+-> Delete
+-> Update
+-> Conflict
+-> upsert ( On Conflict Exluded)
+
+
+
+
+postgres=# \dn
+  List of schemas
+  Name  |  Owner
+--------+----------
+ person | postgres
+ public | postgres
+ school | postgres
+(3 rows)
+
+
+postgres=# SET search_path TO person;
+SET
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+
+postgres=# SELECT * FROM persons LIMIT 2;
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com | Female | 2017-08-13    | Brazil
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp     | Male   | 2019-08-10    | South Africa
+(2 rows)
+
+                    ^
+postgres=# INSERT INTO persons(id, first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(1, 'Ram', 'Kesavan', 'ram123@gmail.com','Male','2015-07-15','India');
+ERROR:  duplicate key value violates unique constraint "persons_pkey"
+DETAIL:  Key (id)=(1) already exists.
+
+
+postgres=# ALTER TABLE persons DROP CONSTRAINT persons_pkey;
+ALTER TABLE
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+
+
+postgres=# INSERT INTO persons(id, first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(1, 'Ram', 'Kesavan', 'ram123@gmail.com','Male','2015-07-15','India');
+INSERT 0 1
+
+postgres=# SELECT * FROM persons WHERE id = 1;
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+--------------------------+--------+---------------+------------------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com | Female | 2017-08-13    | Brazil
+  1 | Ram        | Kesavan   | ram123@gmail.com         | Male   | 2015-07-15    | India
+(2 rows)
+
+
+postgres=# DELETE FROM persons WHERE id = 1;
+DELETE 2
+postgres=# ALTER TABLE persons ADD PRIMARY KEY(id);
+ALTER TABLE
+postgres=# INSERT INTO persons(id, first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(1, 'Ram', 'Kesavan', 'ram123@gmail.com','Male','2015-07-15','India');
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 1;
+ id | first_name | last_name |      email       | gender | date_of_birth | country_of_birth
+----+------------+-----------+------------------+--------+---------------+------------------
+  1 | Ram        | Kesavan   | ram123@gmail.com | Male   | 2015-07-15    | India
+(1 row)
+
+-------------------------###########################------------------------UINQUE KEY Constraint-----------###################-------------------------------
+
+
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+
+postgres=# SELECT email, COUNT(*) FROM persons GROUP BY email;
+              email              | count
+---------------------------------+-------
+ lmcquade1z@cisco.com            |     1
+ ltrenholm10@sakura.ne.jp        |     1
+ ghain1q@phoca.cz                |     1
+ dventura2c@google.com.hk        |     1
+ awenham1f@free.fr               |     1
+ fdallynd@mozilla.com            |     1
+ fgladbeck17@huffingtonpost.com  |     1
+ kbello5@elpais.com              |     1
+                                 |    34
+ bmarlow2q@google.com            |     1
+ amacellar22@businessinsider.com |     1
+ vjakuszewski1x@sakura.ne.jp     |     1
+ icoughlan9@craigslist.org       |     1
+ rgoulder8@wired.com             |     1
+ hoffello@bbb.org                |     1
+ pmccaffery1s@godaddy.com        |     1
+ cmably1i@squidoo.com            |     1
+ cgovett14@so-net.ne.jp          |     1
+ chindenburge@posterous.com      |     1
+ ucrippell18@wordpress.org       |     1
+ nlagne1r@eventbrite.com         |     1
+ kbulfoy1n@t-online.de           |     1
+ gmcgurk1@plala.or.jp            |     1
+ ram123@gmail.com                |     1
+ mtitherington1t@xing.com        |     1
+ mdungate21@paypal.com           |     1
+ tdincker@fotki.com              |     1
+ ctappingm@wikispaces.com        |     1
+ aborgex@jugem.jp                |     1
+ pmacfarlane24@bizjournals.com   |     1
+ sprueq@marriott.com             |     1
+ bgillicuddy1j@patch.com         |     1
+ smartignon1w@pen.io             |     1
+ hkryska1b@loc.gov               |     1
+ elinekern@odnoklassniki.ru      |     1
+ dperkinsi@ebay.co.uk            |     1
+ bduesburyt@seattletimes.com     |     1
+ ascanderet2r@cbslocal.com       |     1
+^Cpostgres=#
+
+                                    ^
+postgres=# SELECT email, COUNT(*) FROM persons GROUP BY email HAVING COUNT(*)>1;
+ email | count
+-------+-------
+       |    34
+(1 row)
+
+
+postgres=# SELECT * FROM persons WHERE id = 1;
+ id | first_name | last_name |      email       | gender | date_of_birth | country_of_birth
+----+------------+-----------+------------------+--------+---------------+------------------
+  1 | Ram        | Kesavan   | ram123@gmail.com | Male   | 2015-07-15    | India
+(1 row)
+
+
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ram', 'Kumar', 'ram123@gmail.com','Male','2015-07-15','India');
+
+INSERT 0 1
+
+postgres=# SELECT email, COUNT(*) FROM persons GROUP BY email HAVING COUNT(*)>1;
+      email       | count
+------------------+-------
+                  |    34
+ ram123@gmail.com |     2
+(2 rows)
+
+
+postgres=# ALTER TABLE persons ADD CONSTRAINT unique_email UNIQUE(email);
+ERROR:  could not create unique index "unique_email"
+DETAIL:  Key (email)=(ram123@gmail.com) is duplicated.
+postgres=# DELETE FROM persons WHERE id = 101;
+DELETE 1
+postgres=# ALTER TABLE persons ADD CONSTRAINT unique_email UNIQUE(email);
+ALTER TABLE
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ram', 'Kumar', 'ram123@gmail.com','Male','2015-07-15','India');
+ERROR:  duplicate key value violates unique constraint "unique_email"
+DETAIL:  Key (email)=(ram123@gmail.com) already exists.
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ram', 'Kumar', 'ram1234@gmail.com','Male','2015-07-15','India');
+INSERT 0 1
+postgres=# SELECT email, COUNT(*) FROM persons GROUP BY email HAVING COUNT(*)>1;
+ email | count
+-------+-------
+       |    34
+(1 row)
+
+
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "unique_email" UNIQUE CONSTRAINT, btree (email)
+
+
+postgres=# ALTER TABLE persons DROP CONSTRAINT unique_email;
+ALTER TABLE
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+
+
+postgres=# ALTER TABLE persons ADD UNIQUE(email);
+ALTER TABLE
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_email_key" UNIQUE CONSTRAINT, btree (email)
+
+
+---------------------------###############################------------------CHECK Constraint----------------------------############################------------------
+
+
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ashwin', 'Kumar', 'ash@gmail.com','Mall','2015-07-15','India');;
+INSERT 0 1
+
+postgres=# SELECT * FROM persons WHERE first_name = 'Ashwin';
+ id  | first_name | last_name |     email     | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------+--------+---------------+------------------
+ 104 | Ashwin     | Kumar     | ash@gmail.com | Mall   | 2015-07-15    | India
+(1 row)
+
+
+postgres=# ALTER TABLE persons ADD CONSTRAINT gender_const CHECK(gender ='Male' OR gender = 'Female');
+ERROR:  check constraint "gender_const" of relation "persons" is violated by some row
+postgres=# DELETE FROM persons WHERE gender = 'Mall';
+DELETE 1
+postgres=# ALTER TABLE persons ADD CONSTRAINT gender_const CHECK(gender ='Male' OR gender = 'Female');
+ALTER TABLE
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ashwin', 'Kumar', 'ash@gmail.com','Mall','2015-07-15','India');;
+ERROR:  new row for relation "persons" violates check constraint "gender_const"
+DETAIL:  Failing row contains (105, Ashwin, Kumar, ash@gmail.com, Mall, 2015-07-15, India).
+postgres=# INSERT INTO persons( first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES( 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India');
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE first_name = 'Ashwin';
+ id  | first_name | last_name |     email     | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------+--------+---------------+------------------
+ 106 | Ashwin     | Kumar     | ash@gmail.com | Male   | 2015-07-15    | India
+(1 row)
+
+postgres-# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_email_key" UNIQUE CONSTRAINT, btree (email)
+Check constraints:
+    "gender_const" CHECK (gender::text = 'Male'::text OR gender::text = 'Female'::text)
+
+-------------------------##########################--------------------DELETE---------------#####################---------------------------------------------
+
+postgres=# DELETE FROM persons WHERE country_of_birth = 'China';
+DELETE 21
+postgres=# SELECT * FROM persons;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |    country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+------------------------
+   2 | Gerhardt   | McGurk       | gmcgurk1@plala.or.jp            | Male   | 2019-08-10    | South Africa
+   3 | Lita       | Wareing      | lwareing2@deliciousdays.com     | Female | 2017-04-30    | Indonesia
+   4 | Myrvyn     | Upton        |                                 | Male   | 2020-01-01    | Kazakhstan
+   5 | Rina       | Muirhead     |                                 | Female | 2018-09-21    | Nigeria
+   7 | Jada       | Merricks     |                                 | Female | 2017-04-07    | Brazil
+   8 | Heida      | Newling      | hnewling7@cafepress.com         | Female | 2019-07-18    | Mexico
+   9 | Ruthi      | Goulder      | rgoulder8@wired.com             | Female | 2016-05-18    | Croatia
+  10 | Isiahi     | Coughlan     | icoughlan9@craigslist.org       | Male   | 2020-07-08    | United States
+  11 | Shauna     | Burkert      | sburkerta@123-reg.co.uk         | Female | 2018-09-13    | Brazil
+  12 | Dud        | Coker        | dcokerb@oakley.com              | Male   | 2020-07-01    | Bosnia and Herzegovina
+  13 | Blayne     | Willerson    | bwillersonc@techcrunch.com      | Male   | 2020-12-12    | Canada
+  14 | Fanya      | Dallyn       | fdallynd@mozilla.com            | Female | 2017-08-12    | Mali
+  15 | Colline    | Hindenburg   | chindenburge@posterous.com      | Female | 2017-06-27    | Thailand
+  16 | Nola       | Stit         | nstitf@cornell.edu              | Female | 2018-07-17    | Indonesia
+  17 | Sabina     | Mangenot     | smangenotg@accuweather.com      | Female | 2020-07-18    | Denmark
+  18 | Ed         | Grigorushkin |                                 | Male   | 2020-05-02    | Philippines
+  22 | Garrett    | MacMoyer     | gmacmoyerl@netscape.com         | Male   | 2020-05-23    | Indonesia
+  23 | Charlie    | Tapping      | ctappingm@wikispaces.com        | Male   | 2017-09-16    | Indonesia
+  24 | Eddie      | Lineker      | elinekern@odnoklassniki.ru      | Female | 2018-05-16    | Czech Republic
+  25 | Hynda      | Offell       | hoffello@bbb.org                | Female | 2017-07-20    | Norway
+  26 | Kendall    | Branno       | kbrannop@cyberchimps.com        | Male   | 2017-04-10    | Finland
+  27 | Sigvard    | Prue         | sprueq@marriott.com             | Male   | 2018-03-19    | Russia
+  28 | Tina       | Dincke       | tdincker@fotki.com              | Female | 2018-04-14    | Russia
+  29 | Valma      | Lammerich    |                                 | Female | 2018-10-25    | Finland
+  31 | Lorrie     | Percy        |                                 | Female | 2019-11-30    | Indonesia
+  33 | Ivonne     | Boal         | iboalw@ucoz.com                 | Female | 2018-01-14    | Japan
+  34 | Amery      | Borge        | aborgex@jugem.jp                | Male   | 2019-06-05    | Georgia
+  35 | Ody        | Swaton       | oswatony@lulu.com               | Male   | 2018-01-07    | Germany
+  36 | Cathe      | Horbart      | chorbartz@telegraph.co.uk       | Female | 2018-03-12    | Nicaragua
+  37 | Lucas      | Trenholm     | ltrenholm10@sakura.ne.jp        | Male   | 2016-01-07    | Brazil
+  39 | Tomas      | Sinclar      | tsinclar12@yahoo.com            | Male   | 2016-02-12    | Colombia
+  40 | Alexandros | Sausman      | asausman13@dyndns.org           | Male   | 2017-11-24    | Czech Republic
+  41 | Caroljean  | Govett       | cgovett14@so-net.ne.jp          | Female | 2018-08-23    | Venezuela
+  43 | Gannon     | Pace         |                                 | Male   | 2018-12-23    | Indonesia
+  44 | Fair       | Gladbeck     | fgladbeck17@huffingtonpost.com  | Male   | 2017-11-18    | Ukraine
+  45 | Una        | Crippell     | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+  46 | Gustav     | Duggary      |                                 | Male   | 2019-07-17    | Indonesia
+  47 | Viviana    | Kerwood      |                                 | Female | 2019-12-16    | Portugal
+^Cpostgres=#
+postgres=# SELECT *
+postgres-# ;
+ERROR:  SELECT * with no tables specified is not valid
+LINE 1: SELECT *
+               ^
+postgres=# DELETE FROM persons WHERE gender = 'Male';
+DELETE 38
+postgres=# SELECT * FROM persons;
+ id | first_name |  last_name  |              email              | gender | date_of_birth |   country_of_birth
+----+------------+-------------+---------------------------------+--------+---------------+-----------------------
+  3 | Lita       | Wareing     | lwareing2@deliciousdays.com     | Female | 2017-04-30    | Indonesia
+  5 | Rina       | Muirhead    |                                 | Female | 2018-09-21    | Nigeria
+  7 | Jada       | Merricks    |                                 | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling     | hnewling7@cafepress.com         | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder     | rgoulder8@wired.com             | Female | 2016-05-18    | Croatia
+ 11 | Shauna     | Burkert     | sburkerta@123-reg.co.uk         | Female | 2018-09-13    | Brazil
+ 14 | Fanya      | Dallyn      | fdallynd@mozilla.com            | Female | 2017-08-12    | Mali
+ 15 | Colline    | Hindenburg  | chindenburge@posterous.com      | Female | 2017-06-27    | Thailand
+ 16 | Nola       | Stit        | nstitf@cornell.edu              | Female | 2018-07-17    | Indonesia
+ 17 | Sabina     | Mangenot    | smangenotg@accuweather.com      | Female | 2020-07-18    | Denmark
+ 24 | Eddie      | Lineker     | elinekern@odnoklassniki.ru      | Female | 2018-05-16    | Czech Republic
+ 25 | Hynda      | Offell      | hoffello@bbb.org                | Female | 2017-07-20    | Norway
+ 28 | Tina       | Dincke      | tdincker@fotki.com              | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich   |                                 | Female | 2018-10-25    | Finland
+ 31 | Lorrie     | Percy       |                                 | Female | 2019-11-30    | Indonesia
+ 33 | Ivonne     | Boal        | iboalw@ucoz.com                 | Female | 2018-01-14    | Japan
+ 36 | Cathe      | Horbart     | chorbartz@telegraph.co.uk       | Female | 2018-03-12    | Nicaragua
+ 41 | Caroljean  | Govett      | cgovett14@so-net.ne.jp          | Female | 2018-08-23    | Venezuela
+ 45 | Una        | Crippell    | ucrippell18@wordpress.org       | Female | 2018-12-31    | Costa Rica
+ 47 | Viviana    | Kerwood     |                                 | Female | 2019-12-16    | Portugal
+ 49 | Kathlin    | Lyokhin     | klyokhin1c@wikispaces.com       | Female | 2020-10-31    | Argentina
+ 50 | Eleanore   | Benns       | ebenns1d@yellowbook.com         | Female | 2016-12-14    | Indonesia
+ 51 | Vilma      | Bough       | vbough1e@army.mil               | Female | 2017-11-17    | Philippines
+ 52 | Annadiane  | Wenham      | awenham1f@free.fr               | Female | 2018-06-20    | Tunisia
+ 58 | Marsiella  | Kornes      |                                 | Female | 2016-08-03    | Czech Republic
+ 60 | Karyl      | Bulfoy      | kbulfoy1n@t-online.de           | Female | 2020-10-08    | Peru
+ 63 | Gracie     | Hain        | ghain1q@phoca.cz                | Female | 2015-12-14    | Indonesia
+ 68 | Natividad  | Le Jean     |                                 | Female | 2020-03-02    | Poland
+ 70 | Victoria   | Jakuszewski | vjakuszewski1x@sakura.ne.jp     | Female | 2017-08-14    | Peru
+ 71 | Ericha     | Igglesden   |                                 | Female | 2018-05-19    | Poland
+ 72 | Lorianne   | McQuade     | lmcquade1z@cisco.com            | Female | 2019-08-19    | Kazakhstan
+ 73 | Corissa    | Grube       |                                 | Female | 2020-07-31    | Sweden
+ 74 | Meagan     | Dungate     | mdungate21@paypal.com           | Female | 2017-02-11    | Russia
+ 75 | Amalle     | Macellar    | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+ 76 | Sheelagh   | Hartfield   |                                 | Female | 2018-08-06    | Azerbaijan
+ 80 | Raf        | Olczyk      |                                 | Female | 2016-01-17    | France
+ 82 | Twila      | Gregersen   |                                 | Female | 2018-06-04    | Sweden
+ 83 | Mandie     | Creavan     |                                 | Female | 2017-10-22    | Syria
+^Cpostgres=#
+postgres=# DELETE FROM persons WHERE id >50;
+DELETE 21
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name  |            email            | gender | date_of_birth | country_of_birth
+----+------------+------------+-----------------------------+--------+---------------+------------------
+  3 | Lita       | Wareing    | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia
+  5 | Rina       | Muirhead   |                             | Female | 2018-09-21    | Nigeria
+  7 | Jada       | Merricks   |                             | Female | 2017-04-07    | Brazil
+  8 | Heida      | Newling    | hnewling7@cafepress.com     | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder    | rgoulder8@wired.com         | Female | 2016-05-18    | Croatia
+ 11 | Shauna     | Burkert    | sburkerta@123-reg.co.uk     | Female | 2018-09-13    | Brazil
+ 14 | Fanya      | Dallyn     | fdallynd@mozilla.com        | Female | 2017-08-12    | Mali
+ 15 | Colline    | Hindenburg | chindenburge@posterous.com  | Female | 2017-06-27    | Thailand
+ 16 | Nola       | Stit       | nstitf@cornell.edu          | Female | 2018-07-17    | Indonesia
+ 17 | Sabina     | Mangenot   | smangenotg@accuweather.com  | Female | 2020-07-18    | Denmark
+ 24 | Eddie      | Lineker    | elinekern@odnoklassniki.ru  | Female | 2018-05-16    | Czech Republic
+ 25 | Hynda      | Offell     | hoffello@bbb.org            | Female | 2017-07-20    | Norway
+ 28 | Tina       | Dincke     | tdincker@fotki.com          | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich  |                             | Female | 2018-10-25    | Finland
+ 31 | Lorrie     | Percy      |                             | Female | 2019-11-30    | Indonesia
+ 33 | Ivonne     | Boal       | iboalw@ucoz.com             | Female | 2018-01-14    | Japan
+ 36 | Cathe      | Horbart    | chorbartz@telegraph.co.uk   | Female | 2018-03-12    | Nicaragua
+ 41 | Caroljean  | Govett     | cgovett14@so-net.ne.jp      | Female | 2018-08-23    | Venezuela
+ 45 | Una        | Crippell   | ucrippell18@wordpress.org   | Female | 2018-12-31    | Costa Rica
+ 47 | Viviana    | Kerwood    |                             | Female | 2019-12-16    | Portugal
+ 49 | Kathlin    | Lyokhin    | klyokhin1c@wikispaces.com   | Female | 2020-10-31    | Argentina
+ 50 | Eleanore   | Benns      | ebenns1d@yellowbook.com     | Female | 2016-12-14    | Indonesia
+(22 rows)
+
+
+postgres=# DELETE FROM persons WHERE country_of_birth = 'Brazil';
+DELETE 2
+postgres=# DELETE FROM persons WHERE id = 3 AND country_of_birth = 'Mali';
+DELETE 0
+postgres=# DELETE FROM persons WHERE id = 3 OR country_of_birth = 'Mali';
+DELETE 2
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name  |           email            | gender | date_of_birth | country_of_birth
+----+------------+------------+----------------------------+--------+---------------+------------------
+  5 | Rina       | Muirhead   |                            | Female | 2018-09-21    | Nigeria
+  8 | Heida      | Newling    | hnewling7@cafepress.com    | Female | 2019-07-18    | Mexico
+  9 | Ruthi      | Goulder    | rgoulder8@wired.com        | Female | 2016-05-18    | Croatia
+ 15 | Colline    | Hindenburg | chindenburge@posterous.com | Female | 2017-06-27    | Thailand
+ 16 | Nola       | Stit       | nstitf@cornell.edu         | Female | 2018-07-17    | Indonesia
+ 17 | Sabina     | Mangenot   | smangenotg@accuweather.com | Female | 2020-07-18    | Denmark
+ 24 | Eddie      | Lineker    | elinekern@odnoklassniki.ru | Female | 2018-05-16    | Czech Republic
+ 25 | Hynda      | Offell     | hoffello@bbb.org           | Female | 2017-07-20    | Norway
+ 28 | Tina       | Dincke     | tdincker@fotki.com         | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich  |                            | Female | 2018-10-25    | Finland
+ 31 | Lorrie     | Percy      |                            | Female | 2019-11-30    | Indonesia
+ 33 | Ivonne     | Boal       | iboalw@ucoz.com            | Female | 2018-01-14    | Japan
+ 36 | Cathe      | Horbart    | chorbartz@telegraph.co.uk  | Female | 2018-03-12    | Nicaragua
+ 41 | Caroljean  | Govett     | cgovett14@so-net.ne.jp     | Female | 2018-08-23    | Venezuela
+ 45 | Una        | Crippell   | ucrippell18@wordpress.org  | Female | 2018-12-31    | Costa Rica
+ 47 | Viviana    | Kerwood    |                            | Female | 2019-12-16    | Portugal
+ 49 | Kathlin    | Lyokhin    | klyokhin1c@wikispaces.com  | Female | 2020-10-31    | Argentina
+ 50 | Eleanore   | Benns      | ebenns1d@yellowbook.com    | Female | 2016-12-14    | Indonesia
+(18 rows)
+
+
+postgres=# DELETE FROM persons WHERE id<25;
+DELETE 7
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |           email           | gender | date_of_birth | country_of_birth
+----+------------+-----------+---------------------------+--------+---------------+------------------
+ 25 | Hynda      | Offell    | hoffello@bbb.org          | Female | 2017-07-20    | Norway
+ 28 | Tina       | Dincke    | tdincker@fotki.com        | Female | 2018-04-14    | Russia
+ 29 | Valma      | Lammerich |                           | Female | 2018-10-25    | Finland
+ 31 | Lorrie     | Percy     |                           | Female | 2019-11-30    | Indonesia
+ 33 | Ivonne     | Boal      | iboalw@ucoz.com           | Female | 2018-01-14    | Japan
+ 36 | Cathe      | Horbart   | chorbartz@telegraph.co.uk | Female | 2018-03-12    | Nicaragua
+ 41 | Caroljean  | Govett    | cgovett14@so-net.ne.jp    | Female | 2018-08-23    | Venezuela
+ 45 | Una        | Crippell  | ucrippell18@wordpress.org | Female | 2018-12-31    | Costa Rica
+ 47 | Viviana    | Kerwood   |                           | Female | 2019-12-16    | Portugal
+ 49 | Kathlin    | Lyokhin   | klyokhin1c@wikispaces.com | Female | 2020-10-31    | Argentina
+ 50 | Eleanore   | Benns     | ebenns1d@yellowbook.com   | Female | 2016-12-14    | Indonesia
+(11 rows)
+
+
+postgres=# DELETE FROM persons ;
+DELETE 11
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth
+----+------------+-----------+-------+--------+---------------+------------------
+(0 rows)
+
+----------------------------------##################################-------------------UPDATE--------------------#################################--------------
+
+postgres=# SELECT * FROM persons;
+ id  | first_name |  last_name   |              email              | gender | date_of_birth |   country_of_birth
+-----+------------+--------------+---------------------------------+--------+---------------+-----------------------
+ 281 | Amalle     | Macellar     | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+ 282 | Sheelagh   | Hartfield    |                                 | Female | 2018-08-06    | Azerbaijan
+ 283 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com   | Male   | 2017-02-24    | Norway
+ 284 | Desdemona  | Filipczynski |                                 | Female | 2016-05-31    | China
+ 285 | Stavros    | Tuddall      |                                 | Male   | 2016-02-01    | Portugal
+ 286 | Raf        | Olczyk       |                                 | Female | 2016-01-17    | France
+ 287 | Kimberli   | Orcott       |                                 | Female | 2016-12-31    | China
+ 288 | Twila      | Gregersen    |                                 | Female | 2018-06-04    | Sweden
+ 289 | Mandie     | Creavan      |                                 | Female | 2017-10-22    | Syria
+ 290 | Herbie     | Tootell      |                                 | Male   | 2020-08-06    | Poland
+ 291 | Dyana      | Ventura      | dventura2c@google.com.hk        | Female | 2017-03-12    | Canada
+ 292 | Farlee     | Schaffel     | fschaffel2d@jigsy.com           | Male   | 2017-12-04    | China
+ 293 | Jakob      | Pruvost      | jpruvost2e@spiegel.de           | Male   | 2017-09-11    | Russia
+ 294 | Shea       | Ruggles      |                                 | Female | 2019-02-12    | China
+ 295 | Midge      | McMorland    | mmcmorland2g@trellian.com       | Female | 2017-06-13    | China
+ 296 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com      | Female | 2020-06-02    | Palestinian Territory
+ 297 | Torre      | Snell        |                                 | Male   | 2019-08-15    | Portugal
+ 298 | Lefty      | Iorizzi      |                                 | Male   | 2016-04-12    | Philippines
+ 299 | Fayette    | Lapley       |                                 | Female | 2017-04-29    | Sweden
+ 300 | Bert       | Cutler       |                                 | Male   | 2020-06-01    | Argentina
+ 301 | Farrell    | Jiggens      | fjiggens2m@adobe.com            | Male   | 2017-12-08    | Indonesia
+ 302 | Callie     | Gryglewski   |                                 | Female | 2019-04-13    | China
+ 303 | Zelma      | Doyle        |                                 | Female | 2016-08-14    | Philippines
+ 304 | Albertina  | Teek         | ateek2p@arizona.edu             | Female | 2018-10-19    | Russia
+ 305 | Brynna     | Marlow       | bmarlow2q@google.com            | Female | 2018-12-30    | China
+ 306 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com       | Male   | 2017-08-31    | Russia
+(26 rows)
+
+
+postgres=# UPDATE persons SET first_name = 'Murugan' WHERE id = 281;
+UPDATE 1
+
+postgres=# SELECT * FROM persons WHERE id =281;
+ id  | first_name | last_name |              email              | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------------------+--------+---------------+------------------
+ 281 | Murugan    | Macellar  | amacellar22@businessinsider.com | Female | 2016-09-26    | Sweden
+(1 row)
+
+
+postgres=# UPDATE persons SET email = 'murug123@xmail.com' WHERE id =281;
+UPDATE 1
+postgres=# SELECT * FROM persons WHERE id =281;
+ id  | first_name | last_name |       email        | gender | date_of_birth | country_of_birth
+-----+------------+-----------+--------------------+--------+---------------+------------------
+ 281 | Murugan    | Macellar  | murug123@xmail.com | Female | 2016-09-26    | Sweden
+(1 row)
+
+                                 ^
+postgres=# UPDATE persons SET last_name = 'Maniyan' , country_of_birth = 'India', gender = 'Male' WHERE id = 281;
+UPDATE 1
+postgres=# SELECT * FROM persons WHERE id =281;
+ id  | first_name | last_name |       email        | gender | date_of_birth | country_of_birth
+-----+------------+-----------+--------------------+--------+---------------+------------------
+ 281 | Murugan    | Maniyan   | murug123@xmail.com | Male   | 2016-09-26    | India
+
+
+----------------------------########################---------------------CONFLICT-----------------------#####################################-----------------------
+
+SELECT * FROM persons;
+ id  | first_name |  last_name   |             email             | gender | date_of_birth |   country_of_birth
+-----+------------+--------------+-------------------------------+--------+---------------+-----------------------
+ 281 | Murugan    | Maniyan      | murug123@xmail.com            | Male   | 2016-09-26    | India
+ 282 | Sheelagh   | Hartfield    |                               | Female | 2018-08-06    | Azerbaijan
+ 283 | Paige      | MacFarlane   | pmacfarlane24@bizjournals.com | Male   | 2017-02-24    | Norway
+ 284 | Desdemona  | Filipczynski |                               | Female | 2016-05-31    | China
+ 285 | Stavros    | Tuddall      |                               | Male   | 2016-02-01    | Portugal
+ 286 | Raf        | Olczyk       |                               | Female | 2016-01-17    | France
+ 287 | Kimberli   | Orcott       |                               | Female | 2016-12-31    | China
+ 288 | Twila      | Gregersen    |                               | Female | 2018-06-04    | Sweden
+ 289 | Mandie     | Creavan      |                               | Female | 2017-10-22    | Syria
+ 290 | Herbie     | Tootell      |                               | Male   | 2020-08-06    | Poland
+ 291 | Dyana      | Ventura      | dventura2c@google.com.hk      | Female | 2017-03-12    | Canada
+ 292 | Farlee     | Schaffel     | fschaffel2d@jigsy.com         | Male   | 2017-12-04    | China
+ 293 | Jakob      | Pruvost      | jpruvost2e@spiegel.de         | Male   | 2017-09-11    | Russia
+ 294 | Shea       | Ruggles      |                               | Female | 2019-02-12    | China
+ 295 | Midge      | McMorland    | mmcmorland2g@trellian.com     | Female | 2017-06-13    | China
+ 296 | Jeannie    | Gladebeck    | jgladebeck2h@economist.com    | Female | 2020-06-02    | Palestinian Territory
+ 297 | Torre      | Snell        |                               | Male   | 2019-08-15    | Portugal
+ 298 | Lefty      | Iorizzi      |                               | Male   | 2016-04-12    | Philippines
+ 299 | Fayette    | Lapley       |                               | Female | 2017-04-29    | Sweden
+ 300 | Bert       | Cutler       |                               | Male   | 2020-06-01    | Argentina
+ 301 | Farrell    | Jiggens      | fjiggens2m@adobe.com          | Male   | 2017-12-08    | Indonesia
+ 302 | Callie     | Gryglewski   |                               | Female | 2019-04-13    | China
+ 303 | Zelma      | Doyle        |                               | Female | 2016-08-14    | Philippines
+ 304 | Albertina  | Teek         | ateek2p@arizona.edu           | Female | 2018-10-19    | Russia
+ 305 | Brynna     | Marlow       | bmarlow2q@google.com          | Female | 2018-12-30    | China
+ 306 | Alfonse    | Scanderet    | ascanderet2r@cbslocal.com     | Male   | 2017-08-31    | Russia
+(26 rows)
+
+
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(281, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India');
+ERROR:  duplicate key value violates unique constraint "persons_pkey"
+DETAIL:  Key (id)=(281) already exists.
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(281, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India') ON CONFLICT(id) DO NOTHING;
+INSERT 0 0
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_email_key" UNIQUE CONSTRAINT, btree (email)
+Check constraints:
+    "gender_const" CHECK (gender::text = 'Male'::text OR gender::text = 'Female'::text)
+
+
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(281, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India') ON CONFLICT(email) DO NOTHING;
+ERROR:  duplicate key value violates unique constraint "persons_pkey"
+DETAIL:  Key (id)=(281) already exists.
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(307, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India') ON CONFLICT(email) DO NOTHING;
+INSERT 0 1
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(308, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India') ON CONFLICT(email) DO NOTHING;
+INSERT 0 0
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) VALUES(308, 'Ashwin', 'Kumar', 'ash@gmail.com','Male','2015-07-15','India') ON CONFLICT(first_name) DO NOTHING;
+ERROR:  there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+------------------------------######################------------------UPSERT------------------########################--------------------------------------------------------------------------
+
+postgres=# SELECT * FROM persons WHERE id = 304;
+ id  | first_name | last_name |        email        | gender | date_of_birth | country_of_birth
+-----+------------+-----------+---------------------+--------+---------------+------------------
+ 304 | Albertina  | Teek      | ateek2p@arizona.edu | Female | 2018-10-19    | Russia
+(1 row)
+
+
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) 
+VALUES(304, 'Albertina', 'Teek', 'ateek2p@arizona.edu.us','Female','2018-10-19','Russia') 
+ON CONFLICT(id) DO UPDATE SET email = EXCLUDED.email;
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 304;
+ id  | first_name | last_name |         email          | gender | date_of_birth | country_of_birth
+-----+------------+-----------+------------------------+--------+---------------+------------------
+ 304 | Albertina  | Teek      | ateek2p@arizona.edu.us | Female | 2018-10-19    | Russia
+(1 row)
+
+
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth) 
+VALUES(304, 'Albertina', 'John', 'ateek2p@arizona.edu.us','Female','2018-10-19','Russia') ON CONFLICT(id)
+DO UPDATE SET email = EXCLUDED.email, last_name = EXCLUDED.last_name;
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 304;
+ id  | first_name | last_name |         email          | gender | date_of_birth | country_of_birth
+-----+------------+-----------+------------------------+--------+---------------+------------------
+ 304 | Albertina  | John      | ateek2p@arizona.edu.us | Female | 2018-10-19    | Russia
+(1 row)
+
+                                                             ^
+postgres=# INSERT INTO persons(id , first_name, last_name, email , gender, date_of_birth, country_of_birth)
+ VALUES(304, 'Julia', 'John', 'ateek2p@arizona.edu.us','Female','2018-10-19','Sri Lanka') ON CONFLICT(id) 
+DO UPDATE SET first_name = EXCLUDED.first_name, country_of_birth = EXCLUDED.country_of_birth;
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 304;
+ id  | first_name | last_name |         email          | gender | date_of_birth | country_of_birth
+-----+------------+-----------+------------------------+--------+---------------+------------------
+ 304 | Julia      | John      | ateek2p@arizona.edu.us | Female | 2018-10-19    | Sri Lanka
+(1 row)
