@@ -1,0 +1,512 @@
+postgres=# SET search_path TO person;
+SET
+postgres=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner
+--------+---------+-------+----------
+ person | cars    | table | postgres
+ person | persons | table | postgres
+(2 rows)
+
+
+postgres=# DROP TABLE persons;
+DROP TABLE
+postgres=# DROP TABLE  cars;
+DROP TABLE
+postgres=# \dt
+Did not find any relations.
+
+postgres=# create table cars (
+postgres(# id BIGSERIAL NOT NULL PRIMARY KEY,
+postgres(# make  VARCHAR(50) NOT NULL,
+postgres(# model VARCHAR(50) NOT NULL,
+postgres(# price VARCHAR(50) NOT NULL
+postgres(# );
+
+CREATE TABLE
+postgres=# insert into cars (id, make , model, price) values (1, 'Suzuki', 'Swift', '555.96');
+INSERT 0 1
+postgres=# insert into cars (id, make , model, price) values (7, 'Mercedes-Benz', 'CL-Class', '991.43');
+INSERT 0 1
+
+     
+postgres=# create table persons (
+postgres(# id BIGSERIAL NOT NULL PRIMARY KEY ,
+postgres(# first_name VARCHAR(50),
+postgres(# last_name VARCHAR(50),
+postgres(# email VARCHAR(50),
+postgres(# gender VARCHAR(50),
+postgres(# date_of_birth DATE,
+postgres(# country_of_birth VARCHAR(50),
+postgres(# car_id BIGINT REFERENCES cars(id),
+postgres(# UNIQUE(car_id)
+postgres(# );
+CREATE TABLE
+postgres=#
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Danice', 'Eastbury', 'deastbury0@instagram.com', 'Female', '2017-08-13', 'Brazil');
+INSERT 0 1
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Gerhardt', 'McGurk', 'gmcgurk1@plala.or.jp', 'Male', '2019-08-10', 'South Africa');
+INSERT 0 1
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Lita', 'Wareing', 'lwareing2@deliciousdays.com', 'Female', '2017-04-30', 'Indonesia');
+INSERT 0 1
+
+postgres=# \dt
+          List of relations
+ Schema |  Name   | Type  |  Owner
+--------+---------+-------+----------
+ person | cars    | table | postgres
+ person | persons | table | postgres
+(2 rows)
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+ car_id           | bigint                |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_car_id_key" UNIQUE CONSTRAINT, btree (car_id)
+Foreign-key constraints:
+    "persons_car_id_fkey" FOREIGN KEY (car_id) REFERENCES cars(id)
+
+postgres=# SELECT * FROM cars;
+ id |  make   |  model   | price
+----+---------+----------+--------
+  1 | Suzuki  | Swift    | 555.96
+  2 | Pontiac | Firebird | 820.36
+(2 rows)
+
+
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |
+(3 rows)
+
+
+postgres=# UPDATE persons SET car_id = 1 WHERE id = 2;
+UPDATE 1
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+(3 rows)
+
+
+postgres=# UPDATE persons SET car_id = 2 WHERE id = 3;
+UPDATE 1
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+(3 rows)
+
+----------------########################----------------------JOINS------------------------#########################---------------------------------------------
+
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+(3 rows)
+
+
+postgres=# SELECT * FROM cars;
+ id |  make   |  model   | price
+----+---------+----------+--------
+  1 | Suzuki  | Swift    | 555.96
+  2 | Pontiac | Firebird | 820.36
+(2 rows)
+
+
+postgres=# \x
+Expanded display is on.
+
+postgres=# SELECT * FROM persons JOIN cars ON persons.car_id = cars.id ;
+-[ RECORD 1 ]----+----------------------------
+id               | 2
+first_name       | Gerhardt
+last_name        | McGurk
+email            | gmcgurk1@plala.or.jp
+gender           | Male
+date_of_birth    | 2019-08-10
+country_of_birth | South Africa
+car_id           | 1
+id               | 1
+make             | Suzuki
+model            | Swift
+price            | 555.96
+-[ RECORD 2 ]----+----------------------------
+id               | 3
+first_name       | Lita
+last_name        | Wareing
+email            | lwareing2@deliciousdays.com
+gender           | Female
+date_of_birth    | 2017-04-30
+country_of_birth | Indonesia
+car_id           | 2
+id               | 2
+make             | Pontiac
+model            | Firebird
+price            | 820.36
+
+
+postgres=# SELECT persons.first_name, cars.make,cars.model,cars.price FROM persons JOIN cars ON persons.car_id = cars.id;
+-[ RECORD 1 ]--------
+first_name | Gerhardt
+make       | Suzuki
+model      | Swift
+price      | 555.96
+-[ RECORD 2 ]--------
+first_name | Lita
+make       | Pontiac
+model      | Firebird
+price      | 820.36
+
+
+postgres=# \x
+Expanded display is off.
+postgres=# SELECT persons.first_name, cars.make,cars.model,cars.price FROM persons JOIN cars ON persons.car_id = cars.id;
+ first_name |  make   |  model   | price
+------------+---------+----------+--------
+ Gerhardt   | Suzuki  | Swift    | 555.96
+ Lita       | Pontiac | Firebird | 820.36
+(2 rows)
+
+                                                
+postgres=# SELECT * FROM persons LEFT JOIN cars ON persons.car_id = cars.id;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id | id |  make   |  model   | price
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------+----+---------+----------+--------
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1 |  1 | Suzuki  | Swift    | 555.96
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2 |  2 | Pontiac | Firebird | 820.36
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |        |    |         |          |
+(3 rows)
+
+
+postgres=# SELECT * FROM persons WHERE car_id IS NULL;
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+--------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com | Female | 2017-08-13    | Brazil           |
+(1 row)
+
+                                                             ^
+postgres=# SELECT * FROM persons LEFT JOIN cars ON persons.car_id = cars.id WHERE cars.* IS NULL;
+ id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth | car_id | id | make | model | price
+----+------------+-----------+--------------------------+--------+---------------+------------------+--------+----+------+-------+-------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com | Female | 2017-08-13    | Brazil           |        |    |      |       |
+(1 row)
+
+
+
+                                                ^
+postgres=# SELECT * FROM persons LEFT JOIN cars ON persons.car_id = cars.id;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id | id |  make   |  model   | price
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------+----+---------+----------+--------
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1 |  1 | Suzuki  | Swift    | 555.96
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2 |  2 | Pontiac | Firebird | 820.36
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |        |    |         |          |
+(3 rows)
+
+--------------##############################----------DELETING RECORD WITH FOREIGN KEY ------------#######################-------------------------------------------
+
+
+postgres=# insert into persons (id,first_name, last_name, email, gender, date_of_birth, country_of_birth) values (12,'Murugan', 'Ashwin', NULL , 'Male', '2017-08-13', 'India');
+INSERT 0 1
+postgres=# insert into cars (id, make , model, price) values (10, 'Hyundai', 'Accent', '122.42');
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 12;
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-------+--------+---------------+------------------+--------
+ 12 | Murugan    | Ashwin    |       | Male   | 2017-08-13    | India            |
+(1 row)
+postgres=# SELECT * FROM cars WHERE id = 10;
+ id |  make   | model  | price
+----+---------+--------+--------
+ 10 | Hyundai | Accent | 122.42
+(1 row)
+
+postgres=# UPDATE persons SET car_id = 10 WHERE id = 12;
+UPDATE 1
+postgres=# SELECT * FROM persons WHERE id = 12;
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-------+--------+---------------+------------------+--------
+ 12 | Murugan    | Ashwin    |       | Male   | 2017-08-13    | India            |     10
+(1 row)
+
+postgres=# DELETE FROM carS WHERE id = 10;
+ERROR:  update or delete on table "cars" violates foreign key constraint "persons_car_id_fkey" on table "persons"
+DETAIL:  Key (id)=(10) is still referenced from table "persons".
+postgres=# DELETE FROM persons WHERE id = 12;
+DELETE 1
+postgres=# DELETE FROM carS WHERE id = 10;
+DELETE 1
+postgres=# SELECT * FROM cars WHERE id = 10;
+ id | make | model | price
+----+------+-------+-------
+(0 rows)
+
+
+postgres=# insert into persons (id,first_name, last_name, email, gender, date_of_birth, country_of_birth) values (12,'Murugan', 'Ashwin', NULL , 'Male', '2017-08-13', 'India');
+INSERT 0 1
+postgres=# insert into cars (id, make , model, price) values (10, 'Hyundai', 'Accent', '122.42');
+INSERT 0 1
+postgres=# SELECT * FROM persons WHERE id = 12;
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-------+--------+---------------+------------------+--------
+ 12 | Murugan    | Ashwin    |       | Male   | 2017-08-13    | India            |
+(1 row)
+postgres=# SELECT * FROM cars WHERE id = 10;
+ id |  make   | model  | price
+----+---------+--------+--------
+ 10 | Hyundai | Accent | 122.42
+(1 row)
+
+postgres=# UPDATE persons SET car_id = 10 WHERE id = 12;
+UPDATE 1
+postgres=# SELECT * FROM persons WHERE id = 12;
+ id | first_name | last_name | email | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-------+--------+---------------+------------------+--------
+ 12 | Murugan    | Ashwin    |       | Male   | 2017-08-13    | India            |     10
+(1 row)
+
+postgres=# DELETE FROM cars WHERE id = 10;
+ERROR:  update or delete on table "cars" violates foreign key constraint "persons_car_id_fkey" on table "persons"
+DETAIL:  Key (id)=(10) is still referenced from table "persons".
+postgres=# UPDATE persons SET car_id = NULL WHERE id = 12;
+UPDATE 1
+postgres=# DELETE FROM cars WHERE id = 10;
+DELETE 1
+postgres=# SELECT * FROM cars;
+ id |  make   |  model   | price
+----+---------+----------+--------
+  1 | Suzuki  | Swift    | 555.96
+  2 | Pontiac | Firebird | 820.36
+(2 rows)
+
+
+postgres=# SELECT * FROM cars WHERE id = 10;
+ id | make | model | price
+----+------+-------+-------
+(0 rows)
+
+--------------------------------------##########################-----------------EXPORT DATA IN CSV FORMAT -------------###################----------------------------
+.
+postgres=# \copy (SELECT * FROM persons) TO '/Users/ajlok/Downloads/test.csv' DELIMITER ',' CSV HEADER ;
+COPY 4
+postgres=# \copy (SELECT * FROM cars) TO '/Users/ajlok/Downloads/test2.csv' DELIMITER ',' CSV HEADER;
+COPY 2
+postgres=# \copy (SELECT * FROM persons LEFT JOIN cars ON persons.car_id = cars.id ) TO '/Users/Downloads/joins.csv' DELIMITER ',' CSV HEADER ;
+/Users/Downloads/joins.csv: No such file or directory
+postgres=# \copy (SELECT * FROM persons LEFT JOIN cars ON persons.car_id = cars.id ) TO '/Users/ajlok/Downloads/joins.csv' DELIMITER ',' CSV HEADER ;
+COPY 4
+--------------------------------------##########################-----------------SEQUENCES-------------###################------------------------
+
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+ car_id           | bigint                |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_car_id_key" UNIQUE CONSTRAINT, btree (car_id)
+Foreign-key constraints:
+    "persons_car_id_fkey" FOREIGN KEY (car_id) REFERENCES cars(id)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       4
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       5
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       6
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       7
+(1 row)
+postgres=# SET search_path TO person;
+SET
+postgres=# \d persons;
+                                        Table "person.persons"
+      Column      |         Type          | Collation | Nullable |               Default
+------------------+-----------------------+-----------+----------+-------------------------------------
+ id               | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+ first_name       | character varying(50) |           |          |
+ last_name        | character varying(50) |           |          |
+ email            | character varying(50) |           |          |
+ gender           | character varying(50) |           |          |
+ date_of_birth    | date                  |           |          |
+ country_of_birth | character varying(50) |           |          |
+ car_id           | bigint                |           |          |
+Indexes:
+    "persons_pkey" PRIMARY KEY, btree (id)
+    "persons_car_id_key" UNIQUE CONSTRAINT, btree (car_id)
+Foreign-key constraints:
+    "persons_car_id_fkey" FOREIGN KEY (car_id) REFERENCES cars(id)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       8
+(1 row)
+
+
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Myrvyn', 'Upton', null, 'Male', '2020-01-01', 'Kazakhstan');
+INSERT 0 1
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+ 12 | Murugan    | Ashwin    |                             | Male   | 2017-08-13    | India            |
+  9 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan       |
+(5 rows)
+
+
+postgres=# ALTER SEQUENCE persons_id_seq RESTART WITH 9 ;
+ALTER SEQUENCE
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+       9
+(1 row)
+
+
+postgres=#
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+      10
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+      11
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+      12
+(1 row)
+
+
+postgres=# SELECT nextval('persons_id_seq'::regclass);
+ nextval
+---------
+      13
+(1 row)
+
+
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+ 12 | Murugan    | Ashwin    |                             | Male   | 2017-08-13    | India            |
+  9 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan       |
+(5 rows)
+
+
+postgres=# ALTER SEQUENCE persons_id_seq RESTART WITH 12 ;
+ALTER SEQUENCE
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Rina', 'Muirhead', null, 'Female', '2018-09-21', 'Nigeria');
+ERROR:  duplicate key value violates unique constraint "persons_pkey"
+DETAIL:  Key (id)=(12) already exists.
+postgres=# ALTER SEQUENCE persons_id_seq RESTART WITH 13;
+ALTER SEQUENCE
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Rina', 'Muirhead', null, 'Female', '2018-09-21', 'Nigeria');
+INSERT 0 1
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Isiahi', 'Coughlan', 'icoughlan9@craigslist.org', 'Male', '2020-07-08', 'United States');
+INSERT 0 1
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+-----------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury  | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk    | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing   | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+ 12 | Murugan    | Ashwin    |                             | Male   | 2017-08-13    | India            |
+  9 | Myrvyn     | Upton     |                             | Male   | 2020-01-01    | Kazakhstan       |
+ 13 | Rina       | Muirhead  |                             | Female | 2018-09-21    | Nigeria          |
+ 14 | Isiahi     | Coughlan  | icoughlan9@craigslist.org   | Male   | 2020-07-08    | United States    |
+(7 rows)
+
+
+postgres=# ALTER SEQUENCE persons_id_seq RESTART WITH 4;
+ALTER SEQUENCE
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Colline', 'Hindenburg', 'chindenburge@posterous.com', 'Female', '2017-06-27', 'Thailand');
+INSERT 0 1
+postgres=# insert into persons (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Shauna', 'Burkert', 'sburkerta@123-reg.co.uk', 'Female', '2018-09-13', 'Brazil');
+INSERT 0 1
+postgres=# SELECT * FROM persons;
+ id | first_name | last_name  |            email            | gender | date_of_birth | country_of_birth | car_id
+----+------------+------------+-----------------------------+--------+---------------+------------------+--------
+  1 | Danice     | Eastbury   | deastbury0@instagram.com    | Female | 2017-08-13    | Brazil           |
+  2 | Gerhardt   | McGurk     | gmcgurk1@plala.or.jp        | Male   | 2019-08-10    | South Africa     |      1
+  3 | Lita       | Wareing    | lwareing2@deliciousdays.com | Female | 2017-04-30    | Indonesia        |      2
+ 12 | Murugan    | Ashwin     |                             | Male   | 2017-08-13    | India            |
+  9 | Myrvyn     | Upton      |                             | Male   | 2020-01-01    | Kazakhstan       |
+ 13 | Rina       | Muirhead   |                             | Female | 2018-09-21    | Nigeria          |
+ 14 | Isiahi     | Coughlan   | icoughlan9@craigslist.org   | Male   | 2020-07-08    | United States    |
+  4 | Colline    | Hindenburg | chindenburge@posterous.com  | Female | 2017-06-27    | Thailand         |
+  5 | Shauna     | Burkert    | sburkerta@123-reg.co.uk     | Female | 2018-09-13    | Brazil           |
+(9 rows)
+
+-- UUID EXTENSION
+
+
+SELECT * FROM pg_available_extensions;
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+SELECT uuid_generate_v4();
+
+SELECT uuid_generate_v3();
+
+SELECT uuid_generate_v1();
+
+SELECT uuid_generate_v4();
+
+
+ 
